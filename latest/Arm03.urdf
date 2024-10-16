@@ -1,0 +1,305 @@
+<robot name="robot">
+  <link name="Axis0">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.15" length="0.0254" />
+      </geometry>
+      <material name="Axis0-material">
+        <color rgba="0.12743768042608497 1 0.12743768042608497 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.15" length="0.0254" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_Axis0" type="continuous">
+    <parent link="world" />
+    <child link="Axis0" />
+    <origin xyz="0 0 0.012411811334759385" rpy="0 0 0" />
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="Axis1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0728" length="0.0508" />
+      </geometry>
+      <material name="Axis1-material">
+        <color rgba="0.12743768042608497 1 0.12743768042608497 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0728" length="0.0508" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Axis0_to_Axis1" type="revolute">
+    <parent link="Axis0" />
+    <child link="Axis1" />
+    <origin xyz="0 0 0.086" rpy="1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.5" upper="1.5" velocity="0.5"/>  </joint>
+  <link name="Seg1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.378" />
+      </geometry>
+      <material name="Seg1-material">
+        <color rgba="0.06301001764564068 0.10946171076915331 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.378" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Axis1_to_Seg1" type="fixed">
+    <parent link="Axis1" />
+    <child link="Seg1" />
+    <origin xyz="0 0.26196671703846885 4.336808689942018e-18" rpy="1.5707963267948963 0 0" />
+  </joint>
+  <link name="Axis2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0457" length="0.0508" />
+      </geometry>
+      <material name="Axis2-material">
+        <color rgba="0.012286488353353374 1 0.04970656597728775 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0457" length="0.0508" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Seg1_to_Axis2" type="revolute">
+    <parent link="Seg1" />
+    <child link="Axis2" />
+    <origin xyz="0 1.582707290961647e-16 -0.23517626477133763" rpy="-1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.65" upper="1.5" velocity="0.5"/>  </joint>
+  <link name="Seg2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.3462" />
+      </geometry>
+      <material name="Seg2-material">
+        <color rgba="0.06301001764564068 0.10946171076915331 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.3462" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Axis2_to_Seg2" type="fixed">
+    <parent link="Axis2" />
+    <child link="Seg2" />
+    <origin xyz="0 0.21928276870466795 -5.421010862427522e-20" rpy="1.5707963267948963 0 0" />
+  </joint>
+  <link name="Axis3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0318" length="0.0508" />
+      </geometry>
+      <material name="Axis3-material">
+        <color rgba="0.012286488353353374 1 0.04970656597728775 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0318" length="0.0508" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Seg2_to_Axis3" type="revolute">
+    <parent link="Seg2" />
+    <child link="Axis3" />
+    <origin xyz="0 1.4011700118645685e-16 -0.20575198250096527" rpy="-1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.26" upper="1.5" velocity="0.5"/>  </joint>
+  <link name="Seg3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.3175" />
+      </geometry>
+      <material name="Seg3-material">
+        <color rgba="0.06301001764564068 0.10946171076915331 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0444" length="0.3175" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="Axis3_to_Seg3" type="fixed">
+    <parent link="Axis3" />
+    <child link="Seg3" />
+    <origin xyz="0 0.19074569136843006 -6.559423143537302e-18" rpy="1.5707963267948963 0 0" />
+  </joint>
+  <link name="WristBase">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0584 0.129 0.0848" />
+      </geometry>
+      <material name="WristBase-material">
+        <color rgba="0.0069954101845983935 0.3005437944049895 0.4969329950515914 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0584 0.129 0.0848" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="Seg3_to_WristBase" type="fixed">
+    <parent link="Seg3" />
+    <child link="WristBase" />
+    <origin xyz="0 -8.665012303873906e-18 -0.20125665570180448" rpy="-3.1415926535897927 0 0" />
+  </joint>
+  <link name="WristDif">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0198" length="0.1128" />
+      </geometry>
+      <material name="WristDif-material">
+        <color rgba="0.12743768042608497 1 0.12743768042608497 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0198" length="0.1128" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="WristBase_to_WristDif" type="revolute">
+    <parent link="WristBase" />
+    <child link="WristDif" />
+    <origin xyz="0 -4.610972620981859e-18 0.06234855123785735" rpy="1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.5" upper="1.5" velocity="0.5"/>  </joint>
+  <link name="Continuous">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0229" length="0.0325" />
+      </geometry>
+      <material name="Continuous-material">
+        <color rgba="0.12743768042608497 1 0.12743768042608497 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0229" length="0.0325" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+  </link>
+  <joint name="WristDif_to_Continuous" type="continuous">
+    <parent link="WristDif" />
+    <child link="Continuous" />
+    <origin xyz="0 0.0353868637334224 7.48099499014998e-18" rpy="-1.5707963267948963 0 0" />
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="Gripper">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.1 0.09" />
+      </geometry>
+      <material name="Gripper-material">
+        <color rgba="0.4178850708380236 0.1412632911304446 0.14412847084818123 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.1 0.09" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="Continuous_to_Gripper" type="fixed">
+    <parent link="Continuous" />
+    <child link="Gripper" />
+    <origin xyz="0 -1.2338762018349442e-16 0.06012455520301052" rpy="-1.2246467991473535e-16 0 0" />
+  </joint>
+</robot>

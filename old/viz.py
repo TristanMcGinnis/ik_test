@@ -1,72 +1,121 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import serial
+from matplotlib.widgets import Slider
+from mpl_toolkits.mplot3d import Axes3D
 
-arm_lengths = np.array([1, 1, 1, 1, 1])  # Lengths of each segment
+# Serial port for reading the data
+# Define the serial port and baud rate
+port = "COM5"  # Update this value
+baud_rate = 9600
 
-def forward_kinematics(joint_angles):
-    positions = np.zeros((len(joint_angles) + 1, 2))
-    current_angle = 0
+# Open the serial port
+ser = serial.Serial(port, baud_rate)
+
+
+
+# Define the rotation matrix around the z-axis
+def Rz(theta):
+    # Convert degrees to radians
+    theta = np.radians(theta)
+    return np.array([
+        [np.cos(theta), -np.sin(theta), 0, 0],
+        [np.sin(theta), np.cos(theta), 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]
+    ])
+
+# Transformation matrix for each joint (assuming joint rotates around z-axis)
+def transform_matrix(a, alpha, d, theta):
+    # Convert degrees to radians for consistency
+    theta = np.radians(theta)
+    return np.array([
+        [np.cos(theta), -np.sin(theta), 0, a],
+        [np.sin(theta) * np.cos(alpha), np.cos(theta) * np.cos(alpha), -np.sin(alpha), -d * np.sin(alpha)],
+        [np.sin(theta) * np.sin(alpha), np.cos(theta) * np.sin(alpha), np.cos(alpha), d * np.cos(alpha)],
+        [0, 0, 0, 1]
+    ])
+
+# Initial link lengths and joint angles
+link_lengths = [468, 378, 97]  # Adjust these values as per your arm's dimensions
+joint_angles = [0, 0, 0]  # All joints start at 0 angle (in degrees)
+
+# Plotting the robotic arm
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+plt.subplots_adjust(left=0.25, bottom=0.25)
+
+# Arm drawing function
+def update_arm():
+    # Starting point of the robotic arm
+    point = np.array([0, 0, 0, 1])
+    points = [point[:3]]
     
-    for i, (angle, length) in enumerate(zip(joint_angles, arm_lengths)):
-        current_angle += angle
-        positions[i + 1, 0] = positions[i, 0] + np.cos(current_angle) * length
-        positions[i + 1, 1] = positions[i, 1] + np.sin(current_angle) * length
+    # Apply transformations for each joint and link
+    T = np.eye(4)
+    for i, (length, angle) in enumerate(zip(link_lengths, joint_angles)):
+        T = T @ Rz(angle) @ transform_matrix(length, 0, 0, 0)
+        point = T @ np.array([0, 0, 0, 1])
+        points.append(point[:3])
     
-    return positions
-
-def jacobian(joint_angles):
-    n = len(joint_angles)
-    jac = np.zeros((2, n))
-    end_effector = forward_kinematics(joint_angles)[-1]
+    # Clear previous lines
+    ax.cla()
+    ax.set_xlim([-600, 600])
+    ax.set_ylim([-600, 600])
+    ax.set_zlim([0, 600])
     
-    for i in range(n):
-        partial_x = 0
-        partial_y = 0
-        for j in range(i, n):
-            angle = np.sum(joint_angles[:j+1])
-            partial_x -= arm_lengths[j] * np.sin(angle)  # derivative w.r.t. x
-            partial_y += arm_lengths[j] * np.cos(angle)  # derivative w.r.t. y
-        jac[0, i] = partial_x
-        jac[1, i] = partial_y
-
-    return jac
-
-def inverse_kinematics(target_position, initial_joint_angles):
-    joint_angles = np.array(initial_joint_angles)
-    learning_rate = 0.01
-    tolerance = 1e-3
-    max_iterations = 100
-    history = []
+    # Draw the arm
+    points = np.array(points)
+    ax.plot(points[:,0], points[:,1], points[:,2], "o-")
     
-    for _ in range(max_iterations):
-        positions = forward_kinematics(joint_angles)
-        current_position = positions[-1]
-        error = target_position - current_position
-        if np.linalg.norm(error) < tolerance:
-            break
+    plt.draw()
+
+# Sliders for controlling joint angles
+axcolor = 'lightgoldenrodyellow'
+ax_angle1 = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
+ax_angle2 = plt.axes([0.25, 0.05, 0.65, 0.03], facecolor=axcolor)
+ax_angle3 = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor=axcolor)
+
+s_angle1 = Slider(ax_angle1, 'Joint 1', -180, 180, valinit=0)
+s_angle2 = Slider(ax_angle2, 'Joint 2', -180, 180, valinit=0)
+s_angle3 = Slider(ax_angle3, 'Joint 3', -180, 180, valinit=0)
+
+def update(val):
+    #joint_angles[0] = s_angle1.val
+    #joint_angles[1] = s_angle2.val
+    #joint_angles[2] = s_angle3.val
+    try:
+        # Read the serial data
+        data = ser.readline().decode("utf-8").strip()
+        print(data)
         
-        jac = jacobian(joint_angles)
-        delta_angles = np.dot(np.linalg.pinv(jac), error) * learning_rate
-        joint_angles += delta_angles
-        history.append(positions)
-    
-    return joint_angles, history
+        # Split the data into joint angles
+        new_joint_angles = list(map(int, data.split(",")))
+        joint_angles[0] = new_joint_angles[0]
+        joint_angles[1] = new_joint_angles[1]
+        joint_angles[2] = new_joint_angles[2]
+    except:
+        pass
+    update_arm()
 
-# Setup the visualization
-target_position = np.array([3, 2])
-initial_angles = np.zeros(5)
-resulting_angles, positions_history = inverse_kinematics(target_position, initial_angles)
+s_angle1.on_changed(update)
+s_angle2.on_changed(update)
+s_angle3.on_changed(update)
 
-fig, ax = plt.subplots()
-ax.set_xlim(-5, 5)
-ax.set_ylim(-5, 5)
-line, = ax.plot([], [], 'o-')
-target_marker = ax.plot(target_position[0], target_position[1], 'ro')
-
-def update(frame):
-    line.set_data(frame[:, 0], frame[:, 1])
-    return line,
-
-ani = FuncAnimation(fig, update, frames=positions_history, blit=True, interval=100)
+update_arm()
 plt.show()
+
+
+while True:
+    try:
+        # Read the serial data
+        data = ser.readline().decode("utf-8").strip()
+        print(data)
+        
+        # Split the data into joint angles
+        joint_angles = list(map(int, data.split(",")))
+        
+        # Update the joint angles and redraw the arm
+        update_arm()
+    except KeyboardInterrupt:
+        break
