@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: ""
+    relative_path: /home/tristan/Downloads/arm06.urdf
+  srdf:
+    relative_path: config/arm06.srdf
+  package_settings:
+    author_name: tmcginnis
+    author_email: mail@mail.com
+    generated_timestamp: 1729270235
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity

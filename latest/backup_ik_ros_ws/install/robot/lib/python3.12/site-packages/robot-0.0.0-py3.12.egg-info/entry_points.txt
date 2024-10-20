@@ -1,0 +1,2 @@
+[console_scripts]
+state_publisher = robot.state_publisher:main

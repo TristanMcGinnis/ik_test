@@ -1,0 +1,59 @@
+[0.006s] Invoking command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/src/arm06_moveit -DCMAKE_INSTALL_PREFIX=/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit
+[0.053s] -- The C compiler identification is GNU 13.2.0
+[0.100s] -- The CXX compiler identification is GNU 13.2.0
+[0.115s] -- Detecting C compiler ABI info
+[0.197s] -- Detecting C compiler ABI info - done
+[0.209s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.209s] -- Detecting C compile features
+[0.210s] -- Detecting C compile features - done
+[0.218s] -- Detecting CXX compiler ABI info
+[0.310s] -- Detecting CXX compiler ABI info - done
+[0.323s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.323s] -- Detecting CXX compile features
+[0.324s] -- Detecting CXX compile features - done
+[0.328s] -- Found ament_cmake: 2.5.2 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.448s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.575s] -- Configuring done (0.6s)
+[0.577s] -- Generating done (0.0s)
+[0.578s] -- Build files have been written to: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit
+[0.583s] Invoked command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/src/arm06_moveit -DCMAKE_INSTALL_PREFIX=/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit
+[0.584s] Invoking command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit -- -j12 -l12
+[0.619s] Invoked command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit -- -j12 -l12
+[0.643s] Invoking command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit
+[0.648s] -- Install configuration: ""
+[0.648s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/ament_index/resource_index/package_run_dependencies/arm06_moveit
+[0.648s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/ament_index/resource_index/parent_prefix_path/arm06_moveit
+[0.648s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/environment/ament_prefix_path.sh
+[0.648s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/environment/ament_prefix_path.dsv
+[0.648s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/environment/path.sh
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/environment/path.dsv
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/local_setup.bash
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/local_setup.sh
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/local_setup.zsh
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/local_setup.dsv
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/package.dsv
+[0.649s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/ament_index/resource_index/packages/arm06_moveit
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/cmake/arm06_moveitConfig.cmake
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/cmake/arm06_moveitConfig-version.cmake
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/package.xml
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/moveit_rviz.launch.py
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/demo.launch.py
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/spawn_controllers.launch.py
+[0.650s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/static_virtual_joint_tfs.launch.py
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/setup_assistant.launch.py
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/rsp.launch.py
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/move_group.launch.py
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/launch/warehouse_db.launch.py
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/arm06.ros2_control.xacro
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/joint_limits.yaml
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/arm06.srdf
+[0.651s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/ros2_controllers.yaml
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/initial_positions.yaml
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/kinematics.yaml
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/moveit.rviz
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/pilz_cartesian_limits.yaml
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/config/arm06.urdf.xacro
+[0.652s] -- Installing: /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/install/arm06_moveit/share/arm06_moveit/.setup_assistant
+[0.653s] Invoked command in '/home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/tristan/Desktop/ik_test/latest/moveit_ros_ws/build/arm06_moveit
