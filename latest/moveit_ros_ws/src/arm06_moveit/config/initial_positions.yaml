@@ -1,7 +1,0 @@
-# Default initial positions for arm06's ros2_control fake system
-
-initial_positions:
-  Axis0_to_Axis1: 0
-  Seg1_to_Axis2: 0
-  Seg2_to_Axis3: 0
-  WristBase_to_WristDif: 0
