@@ -20,5 +20,7 @@ test/test_pep257.py
 urdf/Arm02.urdf
 urdf/arm05.urdf
 urdf/arm06.urdf
+urdf/arm08.urdf
 urdf/r2d2.rviz
 urdf/r2d2.urdf.xml
+urdf/viz.rviz

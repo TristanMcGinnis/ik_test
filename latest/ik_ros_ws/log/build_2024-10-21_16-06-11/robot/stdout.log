@@ -1,0 +1,24 @@
+running develop
+running egg_info
+writing robot.egg-info/PKG-INFO
+writing dependency_links to robot.egg-info/dependency_links.txt
+writing entry points to robot.egg-info/entry_points.txt
+writing requirements to robot.egg-info/requires.txt
+writing top-level names to robot.egg-info/top_level.txt
+reading manifest file 'robot.egg-info/SOURCES.txt'
+writing manifest file 'robot.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages/robot.egg-link (link to .)
+Installing state_publisher script to /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/robot
+
+Installed /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot
+running symlink_data
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/resource/robot -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/ament_index/resource_index/packages
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/package.xml -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/launch/demo.launch.py -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot/launch
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/arm06.urdf -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/r2d2.rviz -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/Arm02.urdf -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/r2d2.urdf.xml -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/arm05.urdf -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot
+symbolically linking /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/urdf/viz.rviz -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/share/robot

@@ -70,24 +70,27 @@ class CustomArm(DHRobot):
         # Define DH parameters for each joint based on your description
         
         super().__init__([
-            # Axis 0 rotates around z-axis
-            RevoluteDH(alpha=0, a=0, d=0.109, qlim=(-3.14, 3.14)),  # Joint 0 (rotates about z-axis)
+            RevoluteDH(alpha=0, a=0, d=0.084, qlim=(-3.14, 3.14)),  # Axis 0
 
-            RevoluteDH(alpha=1.571, a=0.0, d=0.0, q=1.571, qlim=(0.0, 3.14)),
+            RevoluteDH(alpha=1.571, a=0.0, d=0.0, qlim=(1.571, 4.712)),  # Axis 1
 
-            RevoluteDH(alpha=0, a=0.499, d=0.0, q=0, qlim=(-1.571, 1.571)),
+            RevoluteDH(alpha=1.571, a=0.0, d=0.506, qlim=(3.14, 3.14)),  # X
+            
+            RevoluteDH(alpha=1.571, a=0.0, d=0.0, qlim=(0, 3.14)),  # Axis 2
 
-            RevoluteDH(alpha=0, a=0.417, d=0.0, q=0, qlim=(-1.571, 1.571)),
+            RevoluteDH(alpha=0, a=0.435, d=0.0, q=0, qlim=(-1.571, 1.571)), # Axis 3
 
-            RevoluteDH(alpha=1.571, a=0.130, d=0.0, q=0, qlim=(-1.571, 1.571)),
+            RevoluteDH(alpha=1.571, a=0.199, d=0.0, q=0, qlim=(-1.571, 1.571)), # Axis 4
 
-            RevoluteDH(alpha=0, a=0.222, d=0.0, q=0, qlim=(-1.571, 1.571)),
+            RevoluteDH(alpha=1.571, a=0.052, d=0.0, q=0, qlim=(1.571, 1.571)), # Y
+
+            RevoluteDH(alpha=1.571, a=0.0, d=0.176, q=0, qlim=(0, 0)), # Z
         ], name="CustomArm")
         
         # Optional: Define a default configuration (e.g., zero angles)
-        self.qz = np.zeros(6)  # Zero configuration
-        self.qr = np.array([0, 0, 0, 0, 0, 0])  # Custom ready position
-        self.qn = np.array([0, 0, 0, 0, 0, 0])  # current position
+        self.qz = np.zeros(8)  # Zero configuration
+        self.qr = np.array([0, 3.14, 3.14, 1.571, 0, 0, 1.571, 0])  # Custom ready position
+        self.qn = np.array([0, 0, 0, 0, 0, 0, 0, 0])  # current position
         
         self.addconfiguration("qz", self.qz)
         self.addconfiguration("qr", self.qr)
@@ -96,7 +99,11 @@ class CustomArm(DHRobot):
 robot = CustomArm()
 
 
+# Specify the path to your URDF file
+#urdf_path = "/home/tristan/Downloads/arm06.urdf" 
 
+# Load the robot model
+#robot = rtb.models.URDF.Robot(urdf_path)
 
 
 # Initialize a variable to track the last time the block was run
@@ -149,7 +156,7 @@ class StatePublisher(Node):
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
                 #joint_state.name = ['swivel', 'tilt', 'periscope']
-                joint_state.name = ['base_link_to_Axis0', 'Axis0_to_Axis1', 'Seg1_to_Axis2', 'Seg2_to_Axis3', 'WristBase_to_WristDif', 'WristDif_to_Continuous']
+                joint_state.name = ['base_link_to_axis_0', 'axis_0_to_axis_1', 'axis_1_to_axis_2', 'axis_2_to_axis_3', 'axis_3_to_axis_4', 'axis_4_to_axis_5']
                 joint_state.position = [axis0, axis1, axis2, axis3, wristdif, continuous]
 
                 # update transform
@@ -165,23 +172,35 @@ class StatePublisher(Node):
                 if not started:
                     started = not started
                     #T = SE3(1.0, 1.5, 0.5) * SE3.OA([0, 1, 0], [0, 0, -1])
-                    T = SE3(0.35, 0.35, 0.5)
-                    sol = robot.ikine_LM(T, q0=robot.qz)
-                    axis0 = sol.q[0]
-                    axis1 = sol.q[1]
-                    axis2 = sol.q[2]
-                    axis3 = sol.q[3]
-                    wristdif = 0.0
+                    #T = SE3(0.15, 0, 0)
+                    #sol = robot.ikine_LM(T, q0=robot.qr)
+                    axis0 = robot.qr[0]
+                    axis1 = robot.qr[1]-3.14
+                    axis2 = robot.qr[3]-1.571
+                    axis3 = robot.qr[4]
+                    wristdif = robot.qr[5]
                     continuous = 0.0
+                    #use FK to determine the current position
+                    # robot.qn = [axis0, axis1, axis2, axis3, wristdif, continuous]
+                    # T = robot.fkine(robot.qn)
+                    # print(T)
+                    # sol = robot.ikine_LM(T, q0=robot.qz)
+                    # axis0 = sol.q[0]
+                    # axis1 = sol.q[1]
+                    # axis2 = sol.q[2]
+                    # axis3 = sol.q[3]
+                    # wristdif = sol.q[4]
+                    # continuous = sol.q[5]
+                    # self.get_logger().info("The current state is : "+ str(T))
                 
 
 
 
 
-                if time.time() - last_run_time >= 1.25:
+                if time.time() - last_run_time >= 10:
                     
                     #self.get_logger().info("The angles of each joints are : "+ str(joint_state.position))
-                    
+                    #T = robot.fkine(robot.qn)
 
                     
                     # Update the last run time
