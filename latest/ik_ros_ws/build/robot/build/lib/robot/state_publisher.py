@@ -173,7 +173,7 @@ class StatePublisher(Node):
                     started = not started
                     #T = SE3(1.0, 1.5, 0.5) * SE3.OA([0, 1, 0], [0, 0, -1])
                     #T = SE3(0.15, 0, 0)
-                    #sol = robot.ikine_LM(T, q0=robot.qz)
+                    #sol = robot.ikine_LM(T, q0=robot.qr)
                     axis0 = robot.qr[0]
                     axis1 = robot.qr[1]-3.14
                     axis2 = robot.qr[3]-1.571
@@ -197,10 +197,10 @@ class StatePublisher(Node):
 
 
 
-                if time.time() - last_run_time >= 1.25:
+                if time.time() - last_run_time >= 10:
                     
                     #self.get_logger().info("The angles of each joints are : "+ str(joint_state.position))
-                    
+                    #T = robot.fkine(robot.qn)
 
                     
                     # Update the last run time
