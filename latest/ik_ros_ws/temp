@@ -1,0 +1,1000 @@
+ 1016  ros2 launch robot demo.launch.py 
+ 1017  bs
+ 1018  ros2 launch robot demo.launch.py 
+ 1019  bs
+ 1020  ros2 launch robot demo.launch.py 
+ 1021  bs
+ 1022  ros2 launch robot demo.launch.py 
+ 1023  bs
+ 1024  ros2 launch robot demo.launch.py 
+ 1025  bs
+ 1026  ros2 launch robot demo.launch.py 
+ 1027  bs
+ 1028  ros2 launch robot demo.launch.py 
+ 1029  ls
+ 1030  cd ..
+ 1031  git pull
+ 1032  git fetch
+ 1033  git pull
+ 1034  git status
+ 1035  git restore *
+ 1036  git status
+ 1037  ls
+ 1038  cd latest/
+ 1039  ls
+ 1040  cd ..
+ 1041  ls
+ 1042  cd urdf/
+ 1043  ls
+ 1044  rviz2 -d r2d2.rviz 
+ 1045  ls
+ 1046  code r2d2.
+ 1047  ls
+ 1048  code arm05.urdf 
+ 1049  ls
+ 1050  rviz2 -d r2d2.rviz 
+ 1051  ls
+ 1052  cd src/converted_r2d2/launch/
+ 1053  ls
+ 1054  code demo.launch.py 
+ 1055  ping 192.168.1.70
+ 1056  ssh clucky@192.168.1.70
+ 1057  clucky2
+ 1058  ping 192.168.1.70
+ 1059  clucky2
+ 1060  clear
+ 1061  clucky2
+ 1062  ping 192.168.1.70
+ 1063  clucky2
+ 1064  ssh clucky@astra-nuc2.local
+ 1065  ssh clucky@192.168.1.70
+ 1066  ping 192.168.1.70
+ 1067  clear
+ 1068  ssh clucky@192.168.1.70
+ 1069  ping 192.168.1.70
+ 1070  ssh clucky@192.168.1.70
+ 1071  A
+ 1072  ssh clucky@192.168.1.70
+ 1073  clucky2
+ 1074  clucky
+ 1075  ssh clucky@192.168.1.70
+ 1076  s
+ 1077  clucky2
+ 1078  cd ~/
+ 1079  ls
+ 1080  touch ser_test.py
+ 1081  code ser_test.py 
+ 1082  ls
+ 1083  cd Documents/
+ 1084  ls
+ 1085  cd rover-Core/
+ 1086  ls
+ 1087  cd core_ws/
+ 1088  ls
+ 1089  cd src/
+ 1090  ls
+ 1091  cd core_pkg/
+ 1092  ls
+ 1093  cd core_pkg/
+ 1094  ls
+ 1095  code core_control_node.py 
+ 1096  ls
+ 1097  cd core_ws/
+ 1098  ls
+ 1099  source install/setup.bash
+ 1100  ros2 run core_pkg core_control 
+ 1101  ls
+ 1102  cd Documents/
+ 1103  ls
+ 1104  git clone git@github.com:SHC-ASTRA/rover-Core.git
+ 1105  cd rover-Core/
+ 1106  ls
+ 1107  git branch origin/EmbeddedMain
+ 1108  git status
+ 1109  git branch origin/EmbeddedMain 
+ 1110  git checkout origin/EmbeddedMain
+ 1111  ls
+ 1112  cd embedded_main/
+ 1113  ls
+ 1114  cd ..
+ 1115  ls
+ 1116  git fetch
+ 1117  git pull
+ 1118  git branch --set-upstream-to=origin/EmbeddedMain
+ 1119  clear
+ 1120  git branch
+ 1121  git checkout main
+ 1122  clear
+ 1123  git checkout EmbeddedMain
+ 1124  ls
+ 1125  cd ..
+ 1126  ls
+ 1127  cd rover-
+ 1128  ls
+ 1129  cd rover-Core/
+ 1130  ls
+ 1131  cd core_ws/
+ 1132  ls
+ 1133  cd ..
+ 1134  clear
+ 1135  ls
+ 1136  git status
+ 1137  git restore *
+ 1138  ls
+ 1139  cd ..
+ 1140  ls
+ 1141  cd rover-Embedded-Lib/
+ 1142  ls
+ 1143  git status
+ 1144  ls
+ 1145  git status
+ 1146  git fetch
+ 1147  git pull
+ 1148  cd ..
+ 1149  ls
+ 1150  cd rover-Core/
+ 1151  ls
+ 1152  git fetch
+ 1153  ls
+ 1154  cd core_ws/
+ 1155  ls
+ 1156  bs
+ 1157  ls
+ 1158  cd ..
+ 1159  ls
+ 1160  git status
+ 1161  git reset *
+ 1162  git status
+ 1163  git rebase
+ 1164  git pull
+ 1165  cd ..
+ 1166  git branch
+ 1167  clear
+ 1168  git clone git@github.com:SHC-ASTRA/rover-Embedded-Lib.git
+ 1169  ls
+ 1170  cd rover-Embedded-Lib/
+ 1171  ls
+ 1172  git status
+ 1173  git checkout esp32-dev
+ 1174  ls
+ 1175  cd src/
+ 1176  ls
+ 1177  cd ..
+ 1178  ls
+ 1179  cd ..
+ 1180  cd rover-Core/
+ 1181  ls
+ 1182  git status
+ 1183  ls
+ 1184  git branch
+ 1185  git pull
+ 1186  git fetch
+ 1187  git status
+ 1188  ls
+ 1189  git checkout main
+ 1190  ls
+ 1191  git status
+ 1192  ls
+ 1193  git checkout EmbeddedMain
+ 1194  ls
+ 1195  git fetch
+ 1196  git pull
+ 1197  ls
+ 1198  code .
+ 1199  cd ~/
+ 1200  ls
+ 1201  python3 ser_test.py 
+ 1202  ls
+ 1203  python3 ser_test.py 
+ 1204  cd Documents/
+ 1205  ls
+ 1206  cd rover-Core/
+ 1207  ls
+ 1208  git status
+ 1209  git rebase
+ 1210  git checkout interfaces-submodule 
+ 1211  git pull
+ 1212  git fetch
+ 1213  ping 192.168.1.70
+ 1214  clucky2
+ 1215  ping 192.168.1.70
+ 1216  clucky2
+ 1217  ls
+ 1218  python3 ser_test.py 
+ 1219  code ser_test.py 
+ 1220  python3 ser_test.py 
+ 1221  ls
+ 1222  cd Documents/
+ 1223  ls
+ 1224  cd rover-Core/
+ 1225  ls
+ 1226  cd core_ws/
+ 1227  ls
+ 1228  cd src/
+ 1229  ls
+ 1230  cd core_pkg/
+ 1231  ls
+ 1232  cd core_pkg/
+ 1233  ls
+ 1234  cd ../../..
+ 1235  ls
+ 1236  bs
+ 1237  ros2 run core_pkg core_control 
+ 1238  cd ..
+ 1239  git fetch
+ 1240  git pull
+ 1241  lz
+ 1242  ls
+ 1243  cd core_ws/
+ 1244  ls
+ 1245  bs
+ 1246  ros2 run core_pkg core_control 
+ 1247  ls
+ 1248  ros2 run core_pkg core_control 
+ 1249  cd ../../..
+ 1250  ls
+ 1251  cp ser_test.py clucky@astra-nuc2.local:~/ser_test.py
+ 1252  scp ser_test.py clucky@astra-nuc2.local:~/ser_test.py
+ 1253  ls
+ 1254  python3 ser_test.py 
+ 1255  code ser_test.py 
+ 1256  python3 ser_test.py 
+ 1257  scp ser_test.py clucky@astra-nuc2.local:~/ser_test.py
+ 1258  cd rover-C
+ 1259  ls
+ 1260  cd Documents/
+ 1261  ls
+ 1262  cd rover-Core/
+ 1263  ls
+ 1264  cd core_ws/
+ 1265  ls
+ 1266  bs
+ 1267  ros2 run headless_pkg headless 
+ 1268  code ~/.bashrc
+ 1269  ros2 topic list
+ 1270  ros2 node list
+ 1271  cd ~
+ 1272  clear
+ 1273  ls
+ 1274  python ser_test.py 
+ 1275  python3 ser_test.py 
+ 1276  ls
+ 1277  cp ser_test.py clucky@192.168.1.70:~/ser_test.py
+ 1278  ping 192.168.1.7
+ 1279  cp ser_test.py clucky@astra-nuc2.local:~/ser_test.py
+ 1280  cp ser_test.py clucky@192.168.1.70:~/ser_test.py
+ 1281  cp ser_test.py clucky@192.168.1.70:~/
+ 1282  cat ser_test.py 
+ 1283  ros2 topic list
+ 1284  source /opt/ros/jazzy/setup.bash
+ 1285  ros2 topic list
+ 1286  ros2 node list
+ 1287  ros2 node list
+ 1288  cd ../..
+ 1289  ls
+ 1290  cd ..
+ 1291  ls
+ 1292  cd ro
+ 1293  cd ros2_humble/
+ 1294  ls
+ 1295  source install/setup.bash
+ 1296  ros2 node list
+ 1297  ros2 topic list
+ 1298  ping google.com
+ 1299  clear
+ 1300  ros2 topic list
+ 1301  ros2 node list
+ 1302  clear
+ 1303  ros2 node list
+ 1304  ls
+ 1305  source install/setup.bash
+ 1306  ros2 node list
+ 1307  ls
+ 1308  clear
+ 1309  cd ..
+ 1310  source /opt/ros/jazzy/setup.bash
+ 1311  ros2 nodes list
+ 1312  ros2 node list
+ 1313  ros2 run demo_nodes_cpp listener
+ 1314  source /opt/ros/jazzy/setup.bash
+ 1315  ros2 node list
+ 1316  ros2 topic list
+ 1317  clucky2
+ 1318  cd ..
+ 1319  ssh clucky@192.168.1.70
+ 1320  lsa
+ 1321  clear
+ 1322  clucky2
+ 1323  clucky
+ 1324  clucky2
+ 1325  ping 192.168.1.70
+ 1326  clucky2
+ 1327  ls
+ 1328  cd ../..
+ 1329  ls
+ 1330  cd ..
+ 1331  ls
+ 1332  cd Do
+ 1333  cd Documents/
+ 1334  ls
+ 1335  cd rover-Core/
+ 1336  ls
+ 1337  cd ESP_embedded_motors/
+ 1338  cd ..
+ 1339  code ESP_embedded_motors/
+ 1340  ls
+ 1341  code ESP_embedded_main/
+ 1342  ls
+ 1343  source ros2_humble/install/setup.bash
+ 1344  cd Documents/
+ 1345  ls
+ 1346  cd rover-
+ 1347  cd rover-Core/
+ 1348  ls
+ 1349  cd core_ws/
+ 1350  ls
+ 1351  source install/setup.bash
+ 1352  ros2 run headless_pkg headless 
+ 1353  ls
+ 1354  ros2 topic echo /astra/core/telemetry 
+ 1355  ls
+ 1356  clucky2
+ 1357  ls
+ 1358  cd ..
+ 1359  ls
+ 1360  cd ..
+ 1361  ls
+ 1362  cd ik_test/
+ 1363  ls
+ 1364  cd latest/
+ 1365  ls
+ 1366  cd ik_ros_ws/
+ 1367  ls
+ 1368  source /opt/ros/jazzy/setup.bash
+ 1369  ls
+ 1370  bs
+ 1371  ros2 run robot state_publisher 
+ 1372  srj
+ 1373  source ~/.bashrc
+ 1374  srj
+ 1375  ls
+ 1376  bs
+ 1377  ros2 launch robot demo.launch.py 
+ 1378  ls
+ 1379  cd Doc
+ 1380  cd Documents/
+ 1381  ls
+ 1382  cd rover-Core/
+ 1383  ls
+ 1384  git status
+ 1385  ls
+ 1386  git fetch
+ 1387  git checkout two-month-fix 
+ 1388  git pull
+ 1389  git fetch
+ 1390  gs
+ 1391  git status
+ 1392  rm -rf ESP_embedded_main/ ESP_embedded_motors/
+ 1393  ls
+ 1394  git status
+ 1395  ls
+ 1396  cd core_ws/
+ 1397  ls
+ 1398  cd src/
+ 1399  ls
+ 1400  cd core_pkg/
+ 1401  ls
+ 1402  cd core_pkg/
+ 1403  ls
+ 1404  code core_control_node.py 
+ 1405  ls
+ 1406  cd ..
+ 1407  cd ../..
+ 1408  ls
+ 1409  bs
+ 1410  ls
+ 1411  source install/setup.bash
+ 1412  source /opt/ros/jazzy/setup.bash
+ 1413  ros2 run core_pkg core_control 
+ 1414  git status
+ 1415  git add *
+ 1416  git status
+ 1417  git commit -m "Renamed core serial_publisher node to deconflict with Two-Month ROS2 node"
+ 1418  git push
+ 1419  cd ..
+ 1420  ls
+ 1421  cd ..
+ 1422  ls
+ 1423  cd ..
+ 1424  ls
+ 1425  cd Desktop/
+ 1426  ls
+ 1427  cd rover-ik/
+ 1428  ls
+ 1429  cd rtb_test/
+ 1430  ls
+ 1431  source /opt/ros/jazzy/setup.bash
+ 1432  code ~/.bashrc
+ 1433  sh
+ 1434  clear
+ 1435  source ~/.bashrc
+ 1436  srh
+ 1437  srj
+ 1438  clear
+ 1439  srh
+ 1440  clear
+ 1441  ls
+ 1442  cd src/converted_r2d2/urdf/
+ 1443  ls
+ 1444  rviz2 -d r2d2.rviz 
+ 1445  ls
+ 1446  cd ..
+ 1447  ls
+ 1448  cd .
+ 1449  ls
+ 1450  cd .
+ 1451  cd ..
+ 1452  ls
+ 1453  cd moveit_ros_ws/
+ 1454  ls
+ 1455  cd src/
+ 1456  ls
+ 1457  cd arm06_moveit/ 
+ 1458  cd ../..
+ 1459  ls
+ 1460  cd ..
+ 1461  ls
+ 1462  rm -rf moveit_ros_ws/
+ 1463  ls
+ 1464  cd kdl/
+ 1465  ls
+ 1466  cd src/
+ 1467  ls
+ 1468  cd ..
+ 1469  ls
+ 1470  rm -rf kdl/
+ 1471  ls
+ 1472  cd urdfs/
+ 1473  ls
+ 1474  cd arm06/
+ 1475  ls
+ 1476  cd ..
+ 1477  ls
+ 1478  mv backup_ik_ros_ws/ backup_ros_ws/
+ 1479  ls
+ 1480  cd ..
+ 1481  git status
+ 1482  git add *
+ 1483  git status
+ 1484  git commit -m "Cleanup"
+ 1485  git push
+ 1486  git status
+ 1487  clear
+ 1488  ls
+ 1489  cd latest/
+ 1490  ls
+ 1491  cd ik_ros_ws/
+ 1492  ls
+ 1493  cd src/
+ 1494  ls
+ 1495  cd ..
+ 1496  ls
+ 1497  code .
+ 1498  bs
+ 1499  ros2 launch robot demo.launch.py 
+ 1500  ls
+ 1501  clear
+ 1502  ls
+ 1503  bs
+ 1504  ls
+ 1505  clear
+ 1506  ls
+ 1507  cd src/
+ 1508  ls
+ 1509  cd ..
+ 1510  ls
+ 1511  cd src/converted_r2d2/urdf/
+ 1512  ls
+ 1513  cp r2d2.rviz viz.rviz
+ 1514  rviz2 -d viz.rviz 
+ 1515  bs
+ 1516  srj
+ 1517  ros2 launch robot demo.launch.py -
+ 1518  ros2 launch robot demo.launch.py 
+ 1519  bs
+ 1520  ros2 launch robot demo.launch.py 
+ 1521  bs
+ 1522  colcon build --symlink-install
+ 1523  ros2 launch robot demo.launch.py 
+ 1524  bs
+ 1525  ros2 launch robot demo.launch.py 
+ 1526  bs
+ 1527  ros2 launch robot demo.launch.py 
+ 1528  bs
+ 1529  ros2 launch robot demo.launch.py 
+ 1530  bs
+ 1531  ros2 launch robot demo.launch.py 
+ 1532  bs
+ 1533  ros2 launch robot demo.launch.py 
+ 1534  bs
+ 1535  ros2 launch robot demo.launch.py 
+ 1536  clucky
+ 1537  clucky2
+ 1538  srh
+ 1539  cluck2
+ 1540  clucky2
+ 1541  cd Documents/
+ 1542  ls
+ 1543  cd rover-Core/
+ 1544  ls
+ 1545  cd core_ws/
+ 1546  ls
+ 1547  srh
+ 1548  bs
+ 1549  ros2 run headless_pkg headless 
+ 1550  ls
+ 1551  clear
+ 1552  cd ..
+ 1553  ls
+ 1554  cd core_ws/
+ 1555  ls
+ 1556  cd src/
+ 1557  ls
+ 1558  cd core_pkg/
+ 1559  ls
+ 1560  cd core_pkg/
+ 1561  ls
+ 1562  cd ..
+ 1563  lc
+ 1564  clear
+ 1565  cd ..
+ 1566  ls
+ 1567  cd cofre
+ 1568  cd core_ws/
+ 1569  ls
+ 1570  cd src/
+ 1571  ls
+ 1572  cd core_pkg/
+ 1573  ls
+ 1574  cd core_pkg/
+ 1575  ls
+ 1576  code core_control_node.py 
+ 1577  cd ../..
+ 1578  cd ur
+ 1579  cd ..
+ 1580  ls
+ 1581  cd ../..
+ 1582  cd ../Desktop/
+ 1583  ls
+ 1584  cdik
+ 1585  cd ik_test/
+ 1586  ls
+ 1587  cd latest/
+ 1588  ls
+ 1589  cd ik_ros_ws/
+ 1590  cd
+ 1591  ls
+ 1592  cd Desktop/ik_test/latest/
+ 1593  ls
+ 1594  cd ik_ros_ws/
+ 1595  ls
+ 1596  cd src/
+ 1597  ls
+ 1598  cd converted_r2d2/
+ 1599  ls
+ 1600  cd r
+ 1601  cd urdf/
+ 1602  ls
+ 1603  rviz2 -d viz.rviz 
+ 1604  cd ../../../..
+ 1605  cd ../..
+ 1606  ls
+ 1607  cd ..
+ 1608  cd Downloads/
+ 1609  ls
+ 1610  pwd
+ 1611  srh
+ 1612  ls
+ 1613  cd Desktop/
+ 1614  ls
+ 1615  cd ..
+ 1616  ls
+ 1617  cd rover-C
+ 1618  cd Documents/
+ 1619  ls
+ 1620  cd rover-Core/
+ 1621  ls
+ 1622  cd core_ws/
+ 1623  ls
+ 1624  bs
+ 1625  ros2 run headless_pkg headless 
+ 1626  ping 192.168.1.70
+ 1627  clucky2
+ 1628  gst-launch-1.0 -v playbin uri='rtsp://192.168.1.10:554/user=admin&password=&channel=1&stream=0.sdp?' uridecodebin0::source::latency=0
+ 1629  clear
+ 1630  gst-launch-1.0 -v playbin uri='rtsp://192.168.1.10:554/user=admin&password=&channel=1&stream=0.sdp?' uridecodebin0::source::latency=0
+ 1631  sudo apt-get install gstreamer1.0-libde265
+ 1632  clear
+ 1633  sudo apt-add-repository ppa:strukturag/libde265
+ 1634  sudo apt-get update
+ 1635  sudo apt-get upgrade
+ 1636  ls
+ 1637  cd src/
+ 1638  ls
+ 1639  cd converted_r2d2/urdf/
+ 1640  ls
+ 1641  rviz2 -d viz.rviz 
+ 1642  s
+ 1643  rviz2 -d viz.rviz 
+ 1644  ls
+ 1645  srh
+ 1646  rviz2 -d viz.rviz 
+ 1647  ls
+ 1648  rviz2 -d r2d2.rviz 
+ 1649  ping 192.168.1.2
+ 1650  ping 192.168.1.1
+ 1651  ping 192.168.1.3
+ 1652  ping 192.168.1.4
+ 1653  ping 192.168.1.3
+ 1654  ping 192.168.1.2
+ 1655  ssh sbc2@192.168.1.2
+ 1656  ls
+ 1657  cd Documents/
+ 1658  ls
+ 1659  cd ..
+ 1660  cd Desktop/
+ 1661  ls
+ 1662  cd roveri
+ 1663  cd rover-ik/
+ 1664  ls
+ 1665  cd rtb_test/
+ 1666  ls
+ 1667  cd ..
+ 1668  ls
+ 1669  cd ..
+ 1670  ls
+ 1671  cd ik_test/
+ 1672  ls
+ 1673  cd latest/
+ 1674  ls
+ 1675  cd ik_ros_ws/
+ 1676  ls
+ 1677  cd src/
+ 1678  ls
+ 1679  cd converted_r2d2/
+ 1680  ls
+ 1681  cd ..
+ 1682  cd converted_r2d2/
+ 1683  ls
+ 1684  cd launch/
+ 1685  ls
+ 1686  code demo.launch.py 
+ 1687  ls
+ 1688  cd ..
+ 1689  ls
+ 1690  cd urdf/
+ 1691  ld
+ 1692  ls
+ 1693  cp ~/Downloads/arm08.urdf arm08.urdf
+ 1694  ls
+ 1695  cat arm08.urdf 
+ 1696  code arm08.urdf 
+ 1697  cd ../../..
+ 1698  ls
+ 1699  cd src/r
+ 1700  cd src/converted_r2d2/robot/
+ 1701  ls
+ 1702  code state_publisher.py 
+ 1703  ls
+ 1704  cd ../../..
+ 1705  ls
+ 1706  cd ..
+ 1707  ls
+ 1708  cd ik_ros_ws/
+ 1709  ls
+ 1710  bs
+ 1711  srj
+ 1712  source install/setup.bash
+ 1713  ros2 launch robot demo.launch.py 
+ 1714  ls
+ 1715  bs
+ 1716  ros2 launch robot demo.launch.py 
+ 1717  srj
+ 1718  ros2 launch robot demo.launch.py 
+ 1719  bs
+ 1720  ros2 launch robot demo.launch.py 
+ 1721  bs
+ 1722  ros2 launch robot demo.launch.py 
+ 1723  ls
+ 1724  cd ~/Desktop/
+ 1725  history >> temp.history
+ 1726  code temp.history 
+ 1727  ls
+ 1728  code temp.history 
+ 1729  code .
+ 1730  sudo apt-get update
+ 1731  sudo apt auto-remove
+ 1732  sudo apt-get update
+ 1733  sudo add-apt-repository -r ppa:struktrurag
+ 1734  sudo add-apt-repository -r ppa:struktrurag/libde265
+ 1735  clear
+ 1736  sudo apt-add-repository -r ppa:strukturag/libde265
+ 1737  sudo apt-get update && sudo apt-get upgrade
+ 1738  sudo apt dist-upgrade 
+ 1739  clear
+ 1740  ls
+ 1741  cd ik_test/
+ 1742  ls
+ 1743  git status
+ 1744  git add *
+ 1745  git status
+ 1746  git commit -m "Add arm08"
+ 1747  git push
+ 1748  clear
+ 1749  sudo apt install gstreamer1.0-libav
+ 1750  clear
+ 1751  clucky2
+ 1752  ping 192.168.1.70
+ 1753  clucky2
+ 1754  ls
+ 1755  clucky2
+ 1756  clucky
+ 1757  clucky2
+ 1758  gst-launch-1.0 -v playbin uri='rtsp://192.168.1.10:554/user=admin&password=&channel=1&stream=0.sdp?' uridecodebin0::source::latency=0
+ 1759  srj
+ 1760  srh
+ 1761  ls
+ 1762  cd Documents/
+ 1763  ls
+ 1764  cd rover-Core/
+ 1765  ls
+ 1766  cd core_ws/
+ 1767  bs
+ 1768  ls
+ 1769  bs
+ 1770  ros2 run headless_pkg headless 
+ 1771  git status
+ 1772  ls
+ 1773  cd src/
+ 1774  ls
+ 1775  cd core_pkg/
+ 1776  ls
+ 1777  cd core_pkg/
+ 1778  ls
+ 1779  cat core_control_node.py 
+ 1780  clear
+ 1781  cd ../../..
+ 1782  cd ../..
+ 1783  ls
+ 1784  clear
+ 1785  ls
+ 1786  clear
+ 1787  cd ..
+ 1788  ls
+ 1789  cd Dco
+ 1790  cd Documents/
+ 1791  ls
+ 1792  cd rover-Core/
+ 1793  ls
+ 1794  cd core_ws/
+ 1795  ls
+ 1796  cd src/
+ 1797  ls
+ 1798  cd headless_pkg/
+ 1799  ls
+ 1800  cd headless_pkg/
+ 1801  ls
+ 1802  code headless_ctrl_node.py 
+ 1803  ls
+ 1804  clear
+ 1805  cd ../../../..
+ 1806  ls
+ 1807  cd core_ws/
+ 1808  ls
+ 1809  bs
+ 1810  ros2 run headless_pkg headless 
+ 1811  ls
+ 1812  cd ..
+ 1813  ls
+ 1814  cd ..
+ 1815  ls
+ 1816  cd rover-
+ 1817  cd rover-Core/
+ 1818  ls
+ 1819  git status
+ 1820  git add *
+ 1821  git commit -m "Limit to 40% speed"
+ 1822  git push
+ 1823  ls
+ 1824  cd core_ws/
+ 1825  ls
+ 1826  git status
+ 1827  bs
+ 1828  ros2 run headless_pkg headless 
+ 1829  ls
+ 1830  git status
+ 1831  ls
+ 1832  cd rover-C
+ 1833  ls
+ 1834  cd Documents/rove-rC
+ 1835  cd rover-C
+ 1836  cd Documents/rover-Core/
+ 1837  ls
+ 1838  cd core_ws/
+ 1839  ls
+ 1840  bs
+ 1841  ls
+ 1842  ssh astra-arm@192.168.1.70
+ 1843  ping 192.168.1.70
+ 1844  ssh astra-arm@192.168.1.70
+ 1845  ssh-keygen -f '/home/tristan/.ssh/known_hosts' -R 192.168.1.70
+ 1846  ls
+ 1847  ssh astra-arm@192.168.1.70
+ 1848  ssh astra@192.168.1.70
+ 1849  ls
+ 1850  bs
+ 1851  ls
+ 1852  srh
+ 1853  ros2 run headless_pkg headless 
+ 1854  clucky2
+ 1855  ping 192.168.1.71
+ 1856  clucky2
+ 1857  ping 192.168.1.70
+ 1858  ssh clucky@192.168.1.70
+ 1859  cd ..
+ 1860  ls
+ 1861  pio upgrade
+ 1862  pio --help
+ 1863  ls
+ 1864  ping 192.168.1.70
+ 1865  clear
+ 1866  ping 192.168.1.70
+ 1867  ssh astra@192.168.1.70
+ 1868  ssh astra@astra-arm.local
+ 1869  ssh astra@192.168.1.70
+ 1870  70
+ 1871  ssh astra@astra-arm.local
+ 1872  ls
+ 1873  cd Documents/rover-Arm/
+ 1874  ls
+ 1875  cd arm_ws/
+ 1876  ls
+ 1877  srh
+ 1878  source install/setup.bash
+ 1879  ros2 run headless_arm_pkg headless 
+ 1880  clucky
+ 1881  ssh astra@astra-arm.local
+ 1882  cd ..
+ 1883  cd rover-Arm/
+ 1884  ls
+ 1885  cd arm_ws/
+ 1886  ls
+ 1887  bs
+ 1888  ls
+ 1889  bs
+ 1890  ros2 run headless_arm_pkg headless
+ 1891  srh
+ 1892  ros2 run headless_arm_pkg headless
+ 1893  clucky2
+ 1894  ros2 run headless_arm_pkg headless
+ 1895  clucky2
+ 1896  cd ../..
+ 1897  ls
+ 1898  cd latest/
+ 1899  ls
+ 1900  cat urdfs/
+ 1901  cd urdfs/
+ 1902  ls
+ 1903  cd ..
+ 1904  ls
+ 1905  history >> tempHistory1116
+ 1906  cat tempHistory1116 
+ 1907  ls
+ 1908  cd ../../..
+ 1909  ls
+ 1910  bs
+ 1911  srj
+ 1912  ls
+ 1913  source install/setup.bash
+ 1914  ls
+ 1915  ros2 launch robot demo.launch.py
+ 1916  ls
+ 1917  cd DEs
+ 1918  ls
+ 1919  cd Desktop/
+ 1920  ls
+ 1921  cd ik_test/
+ 1922  ls
+ 1923  cd latest/
+ 1924  ls
+ 1925  cd ik_ros_ws/
+ 1926  ls
+ 1927  cd src/
+ 1928  ls
+ 1929  cd converted_r2d2/
+ 1930  ls
+ 1931  cd urdf/
+ 1932  ls
+ 1933  rviz2 -d r2d2.rviz 
+ 1934  srj
+ 1935  rviz2 -d r2d2.rviz 
+ 1936  srh
+ 1937  ls
+ 1938  srh
+ 1939  clear
+ 1940  ls
+ 1941  bs
+ 1942  ros2 launch robot demo.launch.py 
+ 1943  ls
+ 1944  cd ../../..
+ 1945  ls
+ 1946  bs
+ 1947  clear
+ 1948  ls
+ 1949  source install/setup.bash
+ 1950  srh
+ 1951  source install/setup.bash
+ 1952  srj
+ 1953  ros2 launch robot robot_state_publisher.py
+ 1954  clear
+ 1955  ls
+ 1956  srj
+ 1957  ros2 launch robot demo.launch.py 
+ 1958  clear
+ 1959  ros2 launch robot demo.launch.py 
+ 1960  ls
+ 1961  colcon build
+ 1962  source install/setup.bash
+ 1963  clear
+ 1964  ros2 launch robot demo.launch.py 
+ 1965  colcon build
+ 1966  source install/setup.bash
+ 1967  ros2 launch robot demo.launch.py 
+ 1968  colcon build
+ 1969  ros2 launch robot demo.launch.py 
+ 1970  clear
+ 1971  bs
+ 1972  ros2 launch robot demo.launch.py 
+ 1973  bs
+ 1974  ros2 launch robot demo.launch.py 
+ 1975  bs
+ 1976  ros2 launch robot demo.launch.py 
+ 1977  bs
+ 1978  ros2 launch robot demo.launch.py 
+ 1979  bs
+ 1980  ros2 launch robot demo.launch.py 
+ 1981  srj
+ 1982  clear
+ 1983  ls
+ 1984  cd src/
+ 1985  ls
+ 1986  cd converted_r2d2/
+ 1987  ls
+ 1988  cd urdf/
+ 1989  ls
+ 1990  rviz2 -d viz.rviz 
+ 1991  source /opt/ros/jazzy/setup.bash
+ 1992  gedit ~/.bashrc
+ 1993  code ~/.bashrc
+ 1994  cd src/converted_r2d2/urdf/
+ 1995  ls
+ 1996  clear
+ 1997  cd ../../..
+ 1998  ls
+ 1999  source install/setup.bash 
+ 2000  ros2 launch robot demo.launch.py 
+ 2001  cd ../..
+ 2002  ls
+ 2003  cd ..
+ 2004  ls
+ 2005  colcon build
+ 2006  srj
+ 2007  ls
+ 2008  ros2 launch robot_state_publisher 
+ 2009  ls
+ 2010  cd src/
+ 2011  ls
+ 2012  cd ..
+ 2013  cat history
+ 2014  cat >> history
+ 2015  history >> temp

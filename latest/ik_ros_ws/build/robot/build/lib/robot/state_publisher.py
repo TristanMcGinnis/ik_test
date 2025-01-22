@@ -16,6 +16,7 @@ from spatialmath import SE3
 import roboticstoolbox as rtb
 from roboticstoolbox.robot.Robot import Robot
 from roboticstoolbox import DHRobot, RevoluteDH
+from roboticstoolbox.robot.ERobot import ERobot
 
 # Function to get the vector from joystick input
 def get_input_vector(left_stick_x, left_stick_y, right_stick_y):
@@ -63,7 +64,27 @@ def calculate_unit_vector_and_magnitude(vector):
     
     return unit_vector, magnitude
 
+class CustomRobot(ERobot):
+    def __init__(self):
+        # Replace 'path/to/your_robot.urdf' with the actual path to your URDF file
+        links, name, urdf_string, urdf_filepath = self.URDF_read("/home/tristan/Downloads/arm08.urdf")
 
+        super().__init__(
+            links,
+            name=name,
+            urdf_string=urdf_string,
+            urdf_filepath=urdf_filepath,
+            manufacturer="McGinnis" 
+        )
+
+        # Define any specific joint configurations if necessary
+        self.qr = np.zeros(len(links))  # Replace with actual configuration
+        # self.qr = np.array([0, 0, 0, 0, 0, 0])  # Custom ready position
+        # self.qn = np.array([0, 0, 0, 0, 0, 0])  # current position
+
+        self.addconfiguration("qr", self.qr)
+        # self.addconfiguration("qz", self.qz)
+        # self.addconfiguration("qn", self.qn)
 
 class CustomArm(DHRobot):
     def __init__(self):
@@ -96,7 +117,8 @@ class CustomArm(DHRobot):
         self.addconfiguration("qr", self.qr)
 
 
-robot = CustomArm()
+#robot = CustomArm()
+robot = CustomRobot()
 
 
 # Specify the path to your URDF file
@@ -171,27 +193,68 @@ class StatePublisher(Node):
 
                 if not started:
                     started = not started
-                    #T = SE3(1.0, 1.5, 0.5) * SE3.OA([0, 1, 0], [0, 0, -1])
-                    #T = SE3(0.15, 0, 0)
-                    #sol = robot.ikine_LM(T, q0=robot.qr)
-                    axis0 = robot.qr[0]
-                    axis1 = robot.qr[1]-3.14
-                    axis2 = robot.qr[3]-1.571
-                    axis3 = robot.qr[4]
-                    wristdif = robot.qr[5]
+                    # started = not started
+                    # T = SE3(0.6, -0.6, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1])
+                    # self.get_logger().info("The current target is : ")
+                    # self.get_logger().info(str(T))
+
+                    # sol = robot.ikine_GN(T, q0=robot.qr)
+                    #self.get_logger().info("The current state is : "+ str(sol.q))
+
+                    # axis0 = robot.qr[0]+(45*degree)
+                    # axis1 = robot.qr[1]+(90*degree)
+                    # axis2 = robot.qr[2]+(90*degree)
+                    # axis3 = robot.qr[3]+(90*degree)
+                    # wristdif = robot.qr[4]+(90*degree)
+
+
+                    # Define a specific joint configuration (replace with your actual joint values)
+                    q_initial = [0.0, -0.5, 0.5, 0.5, 0.5]
+                    # axis0 = q[0]
+                    # axis1 = q[1]
+                    # axis2 = q[2]
+                    # axis3 = q[3]
+                    # wristdif = q[4]
+
+
+
                     continuous = 0.0
-                    #use FK to determine the current position
-                    # robot.qn = [axis0, axis1, axis2, axis3, wristdif, continuous]
-                    # T = robot.fkine(robot.qn)
-                    # print(T)
-                    # sol = robot.ikine_LM(T, q0=robot.qz)
-                    # axis0 = sol.q[0]
-                    # axis1 = sol.q[1]
-                    # axis2 = sol.q[2]
-                    # axis3 = sol.q[3]
-                    # wristdif = sol.q[4]
-                    # continuous = sol.q[5]
-                    # self.get_logger().info("The current state is : "+ str(T))
+                    
+                    # Compute the forward kinematics to get the end-effector pose
+                    T_fk = robot.fkine(q_initial)
+
+                    # Display the transformation matrix
+                    print(f"Forward Kinematics Result:\n{T_fk}")
+
+                    # Use the FK result as the target pose for inverse kinematics
+                    T_target = T_fk
+
+                    # Solve the inverse kinematics to find the joint configuration
+                    sol = robot.ikine_LM(T_target)
+
+                    # Check if the IK solution was successful
+                    if sol.success:
+                        q_ik = sol.q
+                        self.get_logger().info(f"Inverse Kinematics Solution:\n{q_ik}")
+                    else:
+                        self.get_logger().info(f"IK failed: {sol.reason}")
+
+                    #T = SE3.Trans(-0.76456647, -0.26064198, -0.07070262) * SE3.OA(-2.3056131, 0.19894122, -2.49578021)  # Position and orientation
+                    #sol = robot.ikine_GN(T, ilimit=500, slimit=500)
+
+
+
+                    # if not sol.success:
+                    #     self.get_logger().info(f"IK failed due to: {sol.reason}")
+                    # else:
+                    #     self.get_logger().info(f"IK succeeded with joint configuration: {sol.q}")
+
+
+                    axis0 = sol.q[0]
+                    axis1 = sol.q[1]
+                    axis2 = sol.q[2]
+                    axis3 = sol.q[3]
+                    wristdif = sol.q[4]
                 
 
 

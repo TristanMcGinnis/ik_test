@@ -1,0 +1,25 @@
+[0.376s] Invoking command in '/home/tristan/Desktop/ik_test/latest/ik_ros_ws/src/converted_r2d2': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot build --build-base /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/build install --record /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/install.log --single-version-externally-managed install_data
+[0.488s] running egg_info
+[0.495s] writing ../../build/robot/robot.egg-info/PKG-INFO
+[0.496s] writing dependency_links to ../../build/robot/robot.egg-info/dependency_links.txt
+[0.496s] writing entry points to ../../build/robot/robot.egg-info/entry_points.txt
+[0.496s] writing requirements to ../../build/robot/robot.egg-info/requires.txt
+[0.496s] writing top-level names to ../../build/robot/robot.egg-info/top_level.txt
+[0.512s] reading manifest file '../../build/robot/robot.egg-info/SOURCES.txt'
+[0.512s] adding license file 'LICENSE'
+[0.512s] writing manifest file '../../build/robot/robot.egg-info/SOURCES.txt'
+[0.512s] running build
+[0.512s] running build_py
+[0.512s] copying robot/state_publisher.py -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/build/lib/robot
+[0.512s] running install
+[0.515s] running install_lib
+[0.523s] copying /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/build/lib/robot/state_publisher.py -> /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages/robot
+[0.524s] byte-compiling /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages/robot/state_publisher.py to state_publisher.cpython-312.pyc
+[0.525s] running install_data
+[0.525s] running install_egg_info
+[0.533s] removing '/home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages/robot-0.0.0-py3.12.egg-info' (and everything under it)
+[0.533s] Copying ../../build/robot/robot.egg-info to /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages/robot-0.0.0-py3.12.egg-info
+[0.533s] running install_scripts
+[0.590s] Installing state_publisher script to /home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/robot
+[0.590s] writing list of installed files to '/home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/install.log'
+[0.602s] Invoked command in '/home/tristan/Desktop/ik_test/latest/ik_ros_ws/src/converted_r2d2' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tristan/Desktop/ik_test/latest/ik_ros_ws/install/robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot build --build-base /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/build install --record /home/tristan/Desktop/ik_test/latest/ik_ros_ws/build/robot/install.log --single-version-externally-managed install_data
