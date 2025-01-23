@@ -194,11 +194,13 @@ class StatePublisher(Node):
                 if not started:
                     started = not started
                     # started = not started
-                    # T = SE3(0.6, -0.6, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1])
-                    # self.get_logger().info("The current target is : ")
-                    # self.get_logger().info(str(T))
+                    #T = SE3(0.25, 0, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1])
+                    
+                    
+                    #self.get_logger().info("The current target is : ")
+                    #self.get_logger().info(str(T))
 
-                    # sol = robot.ikine_GN(T, q0=robot.qr)
+                    #sol = robot.ikine_LM(T)
                     #self.get_logger().info("The current state is : "+ str(sol.q))
 
                     # axis0 = robot.qr[0]+(45*degree)
@@ -207,9 +209,9 @@ class StatePublisher(Node):
                     # axis3 = robot.qr[3]+(90*degree)
                     # wristdif = robot.qr[4]+(90*degree)
 
-
+                    ########################More FKine Testing
                     # Define a specific joint configuration (replace with your actual joint values)
-                    q_initial = [0.0, -0.5, 0.5, 0.5, 0.5]
+                    q_initial = [0, 0, 90*degree, 0, 0]
                     # axis0 = q[0]
                     # axis1 = q[1]
                     # axis2 = q[2]
@@ -219,18 +221,24 @@ class StatePublisher(Node):
 
 
                     continuous = 0.0
-                    
-                    # Compute the forward kinematics to get the end-effector pose
+                    ################Fkine testing
+                    # # Compute the forward kinematics to get the end-effector pose
                     T_fk = robot.fkine(q_initial)
 
-                    # Display the transformation matrix
-                    print(f"Forward Kinematics Result:\n{T_fk}")
+                    # # Display the transformation matrix
+                    self.get_logger().info(f"Forward Kinematics Result:\n{T_fk}")
+                    
 
-                    # Use the FK result as the target pose for inverse kinematics
+                    # # Use the FK result as the target pose for inverse kinematics
                     T_target = T_fk
 
-                    # Solve the inverse kinematics to find the joint configuration
+                    # # Solve the inverse kinematics to find the joint configuration
                     sol = robot.ikine_LM(T_target)
+                    ###################################################################
+
+
+                
+                    #sol = robot.ikine_LM(T)
 
                     # Check if the IK solution was successful
                     if sol.success:
@@ -255,6 +263,10 @@ class StatePublisher(Node):
                     axis2 = sol.q[2]
                     axis3 = sol.q[3]
                     wristdif = sol.q[4]
+
+                else:
+
+                    pass
                 
 
 

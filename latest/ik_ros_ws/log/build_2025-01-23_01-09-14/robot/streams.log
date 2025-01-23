@@ -1,0 +1,22 @@
+[0.321s] Invoking command in '/home/tristan/astra/ik_test/latest/ik_ros_ws/src/converted_r2d2': PYTHONPATH=/home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot build --build-base /home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/build install --record /home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/install.log --single-version-externally-managed install_data
+[0.447s] running egg_info
+[0.447s] writing ../../build/robot/robot.egg-info/PKG-INFO
+[0.447s] writing dependency_links to ../../build/robot/robot.egg-info/dependency_links.txt
+[0.447s] writing entry points to ../../build/robot/robot.egg-info/entry_points.txt
+[0.447s] writing requirements to ../../build/robot/robot.egg-info/requires.txt
+[0.447s] writing top-level names to ../../build/robot/robot.egg-info/top_level.txt
+[0.447s] reading manifest file '../../build/robot/robot.egg-info/SOURCES.txt'
+[0.447s] adding license file 'LICENSE'
+[0.447s] writing manifest file '../../build/robot/robot.egg-info/SOURCES.txt'
+[0.447s] running build
+[0.447s] running build_py
+[0.447s] running install
+[0.447s] running install_lib
+[0.448s] running install_data
+[0.448s] running install_egg_info
+[0.449s] removing '/home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/python3.10/site-packages/robot-0.0.0-py3.10.egg-info' (and everything under it)
+[0.449s] Copying ../../build/robot/robot.egg-info to /home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/python3.10/site-packages/robot-0.0.0-py3.10.egg-info
+[0.450s] running install_scripts
+[0.460s] Installing state_publisher script to /home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/robot
+[0.461s] writing list of installed files to '/home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/install.log'
+[0.473s] Invoked command in '/home/tristan/astra/ik_test/latest/ik_ros_ws/src/converted_r2d2' returned '0': PYTHONPATH=/home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/robot build --build-base /home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/build install --record /home/tristan/astra/ik_test/latest/ik_ros_ws/build/robot/install.log --single-version-externally-managed install_data
