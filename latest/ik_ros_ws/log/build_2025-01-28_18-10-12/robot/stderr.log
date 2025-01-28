@@ -1,0 +1,5 @@
+  File "/home/tristan/astra/ik_test/latest/ik_ros_ws/install/robot/lib/python3.10/site-packages/robot/state_publisher.py", line 243
+    sol = robot.ikine_GN(adjusted_pose, q0=q_fk, pinv=True, pinv_damping=0.1
+                        ^
+SyntaxError: '(' was never closed
+

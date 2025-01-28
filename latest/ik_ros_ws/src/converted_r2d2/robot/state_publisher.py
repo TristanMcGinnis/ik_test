@@ -212,6 +212,20 @@ class StatePublisher(Node):
                     ########################More FKine Testing
                     # Define a specific joint configuration (replace with your actual joint values)
                     q_fk = [0, 0, 90*degree, 0, 0, 0]
+                    q_fk2 = [15*degree, 5*degree, 90*degree, 0, 0, 0]
+
+                    # Example FK results (T1 and T2 are spatialmath.SE3 objects)
+                    T1 = robot.fkine(q_fk)  # FK result for configuration q1
+                    T2 = robot.fkine(q_fk2)  # FK result for configuration q2
+
+                    # Extract translational components
+                    pos1 = T1.t  # [x1, y1, z1]
+                    pos2 = T2.t  # [x2, y2, z2]
+
+                    # Compute Euclidean distance
+                    distance = np.linalg.norm(pos1 - pos2)
+
+                    self.get_logger().info(f"Distance between FK results: {distance}")
                     # axis0 = q[0]
                     # axis1 = q[1]
                     # axis2 = q[2]
@@ -233,10 +247,14 @@ class StatePublisher(Node):
 
                     # # Use the FK result as the target pose for inverse kinematics
                     #T_target = T_fk
-                    #T_target = SE3(-0.9059, 0.2273, 0.0055) 
+                    #target_pose = SE3(-0.9059, 0.2273, 0.0055) 
+                    adjusted_pose = target_pose#* SE3.Tx(0.05)
+                    # Translate the pose but preserve original orientation
+                    #adjusted_pose = SE3(target_pose.t + np.array([0, 0.01, 0]))  # Add 0.05 to x-axis
+
 
                     # # Solve the inverse kinematics to find the joint configuration
-                    sol = robot.ikine_LM(target_pose, q0=q_fk, ilimit=250, slimit=500)
+                    sol = robot.ikine_LM(adjusted_pose, q0=q_fk2)
                     ###################################################################
 
 
