@@ -67,7 +67,7 @@ def calculate_unit_vector_and_magnitude(vector):
 class CustomRobot(ERobot):
     def __init__(self):
         # Replace 'path/to/your_robot.urdf' with the actual path to your URDF file
-        links, name, urdf_string, urdf_filepath = self.URDF_read("/home/tristan/Downloads/arm08.urdf")
+        links, name, urdf_string, urdf_filepath = self.URDF_read("/home/tristan/Downloads/arm08_infinite_limits.urdf")
 
         super().__init__(
             links,
@@ -211,7 +211,7 @@ class StatePublisher(Node):
 
                     ########################More FKine Testing
                     # Define a specific joint configuration (replace with your actual joint values)
-                    q_initial = [0, 0, 90*degree, 0, 0]
+                    q_fk = [0, 0, 90*degree, 0, 0, 0]
                     # axis0 = q[0]
                     # axis1 = q[1]
                     # axis2 = q[2]
@@ -223,17 +223,20 @@ class StatePublisher(Node):
                     continuous = 0.0
                     ################Fkine testing
                     # # Compute the forward kinematics to get the end-effector pose
-                    T_fk = robot.fkine(q_initial)
+                    T_fk = robot.fkine(q_fk)
+                    target_pose = T_fk
+                    Position = T_fk.t
 
                     # # Display the transformation matrix
                     self.get_logger().info(f"Forward Kinematics Result:\n{T_fk}")
-                    
+                    self.get_logger().info(f"FK Position:\n{Position}")
 
                     # # Use the FK result as the target pose for inverse kinematics
-                    T_target = T_fk
+                    #T_target = T_fk
+                    #T_target = SE3(-0.9059, 0.2273, 0.0055) 
 
                     # # Solve the inverse kinematics to find the joint configuration
-                    sol = robot.ikine_LM(T_target)
+                    sol = robot.ikine_LM(target_pose, q0=q_fk, ilimit=250, slimit=500)
                     ###################################################################
 
 
@@ -262,7 +265,7 @@ class StatePublisher(Node):
                     axis1 = sol.q[1]
                     axis2 = sol.q[2]
                     axis3 = sol.q[3]
-                    wristdif = sol.q[4]
+                    wristdif = 0.0
 
                 else:
 

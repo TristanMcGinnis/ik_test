@@ -21,6 +21,7 @@ urdf/Arm02.urdf
 urdf/arm05.urdf
 urdf/arm06.urdf
 urdf/arm08.urdf
+urdf/arm08_no_constraints.urdf
 urdf/r2d2.rviz
 urdf/r2d2.urdf.xml
 urdf/viz.rviz
