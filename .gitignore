@@ -1,0 +1,9 @@
+# Build directories
+build/
+
+# Log files
+log/
+
+# Install directories
+install/
+
