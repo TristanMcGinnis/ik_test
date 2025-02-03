@@ -92,7 +92,7 @@ class StatePublisher(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
 
         degree = pi / 180.0
-        loop_rate = self.create_rate(30)
+        loop_rate = self.create_rate(15)
 
         # robot state
         axis0: float = 0.
@@ -112,7 +112,7 @@ class StatePublisher(Node):
 
         #URDF
 
-        urdf_file_name = 'arm10.urdf'
+        urdf_file_name = 'arm11.urdf'
         urdf = os.path.join(
             get_package_share_directory('robot'),
             urdf_file_name)
@@ -153,7 +153,24 @@ class StatePublisher(Node):
         # Define starting target position 
         target_position = [x_pos, y_pos, z_pos]
         target_orientation = [0,0,1]
+        # Define target orientation matrix (keeping end effector parallel to X-Y plane)
+        # target_orientation = np.array([
+        #     [1, 0, 0],  # X-axis remains unchanged
+        #     [0, 1, 0],  # Y-axis remains unchanged
+        #     [0, 0, 1]   # Z-axis remains pointing up
+        # ])
 
+        # Define starting pose
+        #start_angles = [0.0, 0.0, 0.0, 45*degree, 65*degree, -25*degree, 0.0, 0.0] [.756, 0, .442]
+        start_angles = [0.0, 0.0, 0.0, 0.0, 90*degree, 0.0, 0.0, 0.0]
+        last_angles = start_angles
+        start_position = my_chain.forward_kinematics(start_angles)
+        start_position = start_position[:3, 3]
+
+        target_position = start_position
+        x_pos = target_position[0]
+        y_pos = target_position[1]
+        z_pos = target_position[2]
 
         # message declarations
         odom_trans = TransformStamped()
@@ -187,46 +204,104 @@ class StatePublisher(Node):
                     pyg.event.pump()  # Process events to detect new controllers
 
                     updated = False
-                
-                    # Solve IK and plot
-                    #my_chain.plot(my_chain.inverse_kinematics(target_position, target_orientation, orientation_mode="all"), ax, target=target_position)
+                    #target_position = [1.5, 0, 0.0]
+                    self.get_logger().info(f"Start Position: {start_position}")
 
+                    #Solve IK
+                    #ik_angles = my_chain.inverse_kinematics(start_position, target_orientation, orientation_mode="all", initial_position=start_angles)
+                    try:
+                        ik_angles = my_chain.inverse_kinematics(target_position=target_position, target_orientation=target_orientation, orientation_mode="all", initial_position = last_angles)
+                    except:
+                        ik_angles = my_chain.inverse_kinematics(target_position=target_position, target_orientation=target_orientation, orientation_mode="all")
+                    #ik_angles = my_chain.inverse_kinematics(target_position=target_position)
+                    ik_angles = np.round_(ik_angles, decimals=3)
+                    self.get_logger().info(f"output angles: {ik_angles}")
+                    computed_position = my_chain.forward_kinematics(ik_angles)[:3, 3]
+                    error = np.linalg.norm(computed_position - target_position)
+
+                    tolerance = 1e-3
+
+                    if error > tolerance:
+                        self.get_logger().info("No VALID IK Solution")
+                    else:
+                        self.get_logger().info(f"IK Solution Found. Error: {error}")
+                
                     # Get controller input
                     LS_X = round(controller.get_axis(0),2)#left x-axis
                     LS_Y = round(controller.get_axis(1),2)#left y-axis
                     RS_X = round(controller.get_axis(2),2)#right x-axis
                     RS_Y = round(controller.get_axis(3),2)#right y-axis 
 
-                    # Update x position
+
+                    last_angles = ik_angles
+                    #Update position
                     if(LS_X > 0.05 or LS_X < -0.05):
                         updated = True
                         x_pos += step * LS_X 
                     if(LS_Y > 0.05 or LS_Y < -0.05):
                         updated = True
                         y_pos += (step * LS_Y)
-                    if(RS_Y > 0.05 or RS_Y <- 0.05):
+                    if(RS_Y > 0.05 or RS_Y < -0.05):
                         updated = True
                         z_pos += (step * RS_Y)
 
                     # Update Target Position
                     target_position = [x_pos, y_pos, z_pos]
-                    if updated:
-                        self.get_logger().info(f"Target Position: {target_position}")
+                    # if updated:
+                    #     self.get_logger().info(f"Target Position: {target_position}")
+
+
+                    
 
                     #self.get_logger().info(f"Distance between FK results: {distance}")
-                    # axis0 = q[0]
-                    # axis1 = q[1]
-                    # axis2 = q[2]
-                    # axis3 = q[3]
-                    # wristdif = q[4]
+                    axis0 = ik_angles[2]
+                    axis1 = ik_angles[3]
+                    axis2 = ik_angles[4]
+                    axis3 = ik_angles[5]
+                    wristdif = ik_angles[6]
 
 
+                    # axis0 = start_angles[2]
+                    # axis1 = start_angles[3]
+                    # axis2 = start_angles[4]
+                    # axis3 = start_angles[5]
+                    # wristdif = start_angles[6]
 
-                    # axis0 = sol.q[0]
-                    # axis1 = sol.q[1]
-                    # axis2 = sol.q[2]
-                    # axis3 = sol.q[3]
-                    # wristdif = 0.0
+                    global moving_up
+
+
+                    #IK Animation
+                    # if target_position[0] < 0.5:
+                    #     moving_up = True
+                    # elif target_position[0] > 1.0:
+                    #     moving_up = False
+
+                    # if moving_up:
+                    #     target_position[0] += 0.01
+                    # else:
+                    #     target_position[0] -= 0.01
+
+                    #Manual Animation
+                    # if axis1 > 90*degree:
+                    #     moving_up = False
+                    # elif axis1 < -90*degree:
+                    #     moving_up = True
+
+                    # if moving_up:
+                    #     axis0 = 0.0
+                    #     axis1 += 1*degree
+                    #     axis2 = 0.0
+                    #     axis3 = 0.0
+                    #     wristdif = 0.0
+                    # else:
+                    #     axis0 = 0.0
+                    #     axis1 -= 1*degree
+                    #     axis2 = 0.0
+                    #     axis3 = 0.0
+                    #     wristdif = 0.0
+
+
+                    #time.sleep(0.1)
 
                 else:
 

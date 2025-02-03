@@ -10,7 +10,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     #urdf_file_name = 'r2d2.urdf.xml'
-    urdf_file_name = 'arm10.urdf'
+    urdf_file_name = 'arm11.urdf'
     urdf = os.path.join(
         get_package_share_directory('robot'),
         urdf_file_name)
