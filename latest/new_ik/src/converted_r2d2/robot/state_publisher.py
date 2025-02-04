@@ -140,7 +140,7 @@ class StatePublisher(Node):
         #my_chain = Chain.from_urdf_file(urdf, base_elements=["base_link", "arm_link_0", "arm_link_1", "arm_link_2", "arm_link_3", "arm_link_4", "arm_link_5", "arm_link_6"])
 
         # Initial position and movement parameters
-        step = 0.05  # Max movement increment
+        step = 0.03  # Max movement increment
         x_pos, y_pos, z_pos = 0.1, 0, 0.4  # Start at lower bound
 
         ######
@@ -267,21 +267,21 @@ class StatePublisher(Node):
                     #     self.get_logger().info(f"IK Solution Found. Error: {error}")
                 
                     # Get controller input
-                    LS_X = round(controller.get_axis(0),2)#left x-axis
-                    LS_Y = round(controller.get_axis(1),2)#left y-axis
-                    RS_X = round(controller.get_axis(2),2)#right x-axis
-                    RS_Y = round(controller.get_axis(3),2)#right y-axis 
+                    LS_X = round(controller.get_axis(0),2)*.5#left x-axis
+                    LS_Y = round(controller.get_axis(1),2)*.5#left y-axis
+                    RS_X = round(controller.get_axis(2),2)*.5#right x-axis
+                    RS_Y = round(controller.get_axis(3),2)*.5#right y-axis 
 
 
                     # last_angles = ik_angles
                     # #Update position
-                    if(LS_X > 0.05 or LS_X < -0.05):
+                    if(LS_X > 0.1 or LS_X < -0.1):
                         updated = True
                         x_pos += step * LS_X 
-                    if(LS_Y > 0.05 or LS_Y < -0.05):
+                    if(LS_Y > 0.1 or LS_Y < -0.1):
                         updated = True
                         y_pos += (step * LS_Y)
-                    if(RS_Y > 0.05 or RS_Y < -0.05):
+                    if(RS_Y > 0.1 or RS_Y < -0.1):
                         updated = True
                         z_pos += (step * RS_Y)
 
