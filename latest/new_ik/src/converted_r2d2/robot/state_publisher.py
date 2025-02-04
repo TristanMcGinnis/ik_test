@@ -17,9 +17,11 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 #ik libs
-import ikpy.chain
+from ikpy.chain import Chain
+from ikpy.link import OriginLink, URDFLink
 import pygame as pyg
 import time
+from scipy.spatial.transform import Rotation as R
 
 
 # Function to get the vector from joystick input
@@ -69,6 +71,22 @@ def calculate_unit_vector_and_magnitude(vector):
     return unit_vector, magnitude
 
 
+def extract_orientation_from_fk(fk_matrix):
+    """
+    Given a 4x4 homogeneous transformation matrix, extract the orientation
+    as a rotation matrix, Euler angles (XYZ roll, pitch, yaw), and quaternion.
+    """
+    # Extract the rotation matrix (top-left 3x3 part of the FK matrix)
+    rotation_matrix = fk_matrix[:3, :3]
+
+    # Convert to Euler angles (XYZ convention, in degrees)
+    euler_angles = R.from_matrix(rotation_matrix).as_euler('xyz', degrees=False)
+
+    # Convert to Quaternion (w, x, y, z)
+    quaternion = R.from_matrix(rotation_matrix).as_quat()  # [x, y, z, w]
+
+    return rotation_matrix, euler_angles, quaternion
+
 
 
 # Initialize a variable to track the last time the block was run
@@ -117,7 +135,9 @@ class StatePublisher(Node):
             get_package_share_directory('robot'),
             urdf_file_name)
 
-        my_chain = ikpy.chain.Chain.from_urdf_file(urdf) # Load the robotic chain from URDF
+        my_chain = Chain.from_urdf_file(urdf) # Load the robotic chain from URDF
+        #last_link_vector=[0.0, 0.0, 0.124], 
+        #my_chain = Chain.from_urdf_file(urdf, base_elements=["base_link", "arm_link_0", "arm_link_1", "arm_link_2", "arm_link_3", "arm_link_4", "arm_link_5", "arm_link_6"])
 
         # Initial position and movement parameters
         step = 0.05  # Max movement increment
@@ -150,24 +170,13 @@ class StatePublisher(Node):
             else:
                 time.sleep(1)  # Reduce CPU usage while waiting
 
-        # Define starting target position 
-        target_position = [x_pos, y_pos, z_pos]
-        target_orientation = [0,0,1]
-        # Define target orientation matrix (keeping end effector parallel to X-Y plane)
-        # target_orientation = np.array([
-        #     [1, 0, 0],  # X-axis remains unchanged
-        #     [0, 1, 0],  # Y-axis remains unchanged
-        #     [0, 0, 1]   # Z-axis remains pointing up
-        # ])
-
-        # Define starting pose
-        #start_angles = [0.0, 0.0, 0.0, 45*degree, 65*degree, -25*degree, 0.0, 0.0] [.756, 0, .442]
         start_angles = [0.0, 0.0, 0.0, 0.0, 90*degree, 0.0, 0.0, 0.0]
-        last_angles = start_angles
-        start_position = my_chain.forward_kinematics(start_angles)
-        start_position = start_position[:3, 3]
+        start_fk = my_chain.forward_kinematics(start_angles)
 
-        target_position = start_position
+        target_orientation = [0, 90*degree, 0]
+
+
+        target_position = [0.756, 0, 0.442]
         x_pos = target_position[0]
         y_pos = target_position[1]
         z_pos = target_position[2]
@@ -197,34 +206,65 @@ class StatePublisher(Node):
 
 
                 global last_run_time
+                
     
-
                 if not started:
+                    started = True
+
+                    ef_matrix, ef_euler, ef_quaternion = extract_orientation_from_fk(my_chain.forward_kinematics(start_angles))
+                    self.get_logger().info(f"Start FK Matrix: {ef_matrix}")
+                    self.get_logger().info(f"Start Euler Angles: {ef_euler}")
+                    self.get_logger().info(f"Start Quaternion: {ef_quaternion}")
+                    # self.get_logger().info(f"Initial Angles FK Matrix: {my_chain.forward_kinematics(start_angles)}")
+
+                    # self.get_logger().info(f"start position: {start_position}")
+                    # ef_matrix = my_chain.forward_kinematics(start_angles)[:3, :3]
+                    # self.get_logger().info(f"ef matrix: {ef_matrix}")
+                    # rot_matrix = ef_matrix[:3, :3]
+                    # self.get_logger().info(f"rot matrix: {rot_matrix}")
+
+                    # ef_temp_or = [0, 0, 1]
+
+                    
+
+
+
+
+                if started:
                     #started = not started
                     pyg.event.pump()  # Process events to detect new controllers
 
                     updated = False
                     #target_position = [1.5, 0, 0.0]
-                    self.get_logger().info(f"Start Position: {start_position}")
+                    #self.get_logger().info(f"Start Position: {start_position}")
 
                     #Solve IK
+                    #fixed_ef_orient = [0, 0, 1.0]
                     #ik_angles = my_chain.inverse_kinematics(start_position, target_orientation, orientation_mode="all", initial_position=start_angles)
                     try:
-                        ik_angles = my_chain.inverse_kinematics(target_position=target_position, target_orientation=target_orientation, orientation_mode="all", initial_position = last_angles)
-                    except:
-                        ik_angles = my_chain.inverse_kinematics(target_position=target_position, target_orientation=target_orientation, orientation_mode="all")
-                    #ik_angles = my_chain.inverse_kinematics(target_position=target_position)
-                    ik_angles = np.round_(ik_angles, decimals=3)
-                    self.get_logger().info(f"output angles: {ik_angles}")
-                    computed_position = my_chain.forward_kinematics(ik_angles)[:3, 3]
-                    error = np.linalg.norm(computed_position - target_position)
+                        #ik_angles = my_chain.inverse_kinematics(target_position=target_position, target_orientation=saved_orientation, orientation_mode="all", initial_position = last_angles)
+                        ik_angles = my_chain.inverse_kinematics(target_position, ef_matrix, orientation_mode="all")
+                        self.get_logger().info(f"IK DONE: output angles: {ik_angles}")
+                        #ef_matrix, ef_euler, ef_quaternion = extract_orientation_from_fk(my_chain.forward_kinematics(ik_angles))
+                        #self.get_logger().info(f"Final FK Matrix: {ef_matrix}")
+                        #self.get_logger().info(f"Final Euler Angles: {ef_euler}")
+                        #self.get_logger().info(f"Final Quaternion: {ef_quaternion}")
+                    except Exception as e:
+                        self.get_logger().info(f"IK Error: {e}")
+                        ik_angles = my_chain.inverse_kinematics(target_position)
 
-                    tolerance = 1e-3
+                    #ik_angles = np.round_(ik_angles, decimals=3)
+                    #self.get_logger().info(f"output angles: {ik_angles}")
+                    # computed_position = my_chain.forward_kinematics(ik_angles)[:3, 3]
+                    # error = np.linalg.norm(computed_position - target_position)
 
-                    if error > tolerance:
-                        self.get_logger().info("No VALID IK Solution")
-                    else:
-                        self.get_logger().info(f"IK Solution Found. Error: {error}")
+
+                    # tolerance = 1e-3
+
+                    # if error > tolerance:
+                    #     self.get_logger().info("No VALID IK Solution")
+                    # else:
+                    #     self.get_logger().info(f"IK Solution Found. Error: {error}")
                 
                     # Get controller input
                     LS_X = round(controller.get_axis(0),2)#left x-axis
@@ -233,8 +273,8 @@ class StatePublisher(Node):
                     RS_Y = round(controller.get_axis(3),2)#right y-axis 
 
 
-                    last_angles = ik_angles
-                    #Update position
+                    # last_angles = ik_angles
+                    # #Update position
                     if(LS_X > 0.05 or LS_X < -0.05):
                         updated = True
                         x_pos += step * LS_X 
@@ -245,7 +285,7 @@ class StatePublisher(Node):
                         updated = True
                         z_pos += (step * RS_Y)
 
-                    # Update Target Position
+                    # # Update Target Position
                     target_position = [x_pos, y_pos, z_pos]
                     # if updated:
                     #     self.get_logger().info(f"Target Position: {target_position}")
