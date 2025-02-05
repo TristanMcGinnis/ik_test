@@ -46,9 +46,10 @@ ccw = True
 urdf_file_name = 'arm11.urdf'
 ik_tolerance = 1e-3 #Tolerance determines if IK was successful (in meters)
 
-#Angles X, X, Ax_0, Ax_1, Ax_2, Ax_3, Ax_4, WristDif
+#Angles X, X, Ax_0, Ax_1, Ax_2, Ax_3, Wrist, X
 start_angles = [0.0, 0.0, 0.0, 0.0, 90*degree, 0.0, 0.0, 0.0]
 last_angles = start_angles
+ik_angles = start_angles
 
 #current_position = [0.0, 0.0, 0.0] # Not currently used
 target_position = [0.756, 0, 0.442] # [0.756, 0, 0.442] starting target position with correct orientation
@@ -111,6 +112,7 @@ class StatePublisher(Node):
         #pass in all the global variables
         global started#, axis0, axis1, axis2, axis3, wrist
         global target_position, target_orientation, last_angles
+        global ik_angles
 
         axis0 = 0.0
         axis1 = 0.0
@@ -186,17 +188,30 @@ class StatePublisher(Node):
                         LS_Y = round(controller.get_axis(1),2)*.5#left y-axis
                         RS_X = round(controller.get_axis(2),2)*.5#right x-axis
                         RS_Y = round(controller.get_axis(3),2)*.5#right y-axis 
+                        RB = controller.get_button(10) #Right Bumper
 
                         #Update target position
-                        if(LS_X > 0.1 or LS_X < -0.1):
-                            target_position[0] += step * LS_X 
-                        if(LS_Y > 0.1 or LS_Y < -0.1):
-                            target_position[1] += (step * LS_Y)
-                        if(RS_Y > 0.1 or RS_Y < -0.1):
-                            target_position[2] += (step * RS_Y)
-
+                        last_pos = target_position
+                        if RB:
+                            if(RS_X > 0.1):
+                                wrist += step * RS_X
+                            elif(RS_X < -0.1):
+                                wrist += step * RS_X
+                            last_angles[6] = wrist
+                            update_orientation(arm_chain.forward_kinematics(last_angles))
+                        else:
+                            if(LS_X > 0.1 or LS_X < -0.1):
+                                target_position[0] += step * LS_X 
+                            if(LS_Y > 0.1 or LS_Y < -0.1):
+                                target_position[1] += (step * LS_Y)
+                            if(RS_Y > 0.1 or RS_Y < -0.1):
+                                target_position[2] += (step * RS_Y)
+                        
+                        
+                        
 
                     #Solve IK
+                    #if last_pos != target_position:
                     try:
                         ik_angles = arm_chain.inverse_kinematics(target_position, target_orientation, orientation_mode="all")
                         last_angles = ik_angles
