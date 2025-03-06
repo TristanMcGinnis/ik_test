@@ -193,18 +193,18 @@ class StatePublisher(Node):
                         #Update target position
                         last_pos = target_position
                         if RB:
-                            if(RS_X > 0.1):
+                            if(RS_X > 0.3):
                                 wrist += step * RS_X
-                            elif(RS_X < -0.1):
+                            elif(RS_X < -0.3):
                                 wrist += step * RS_X
                             last_angles[6] = wrist
                             update_orientation(arm_chain.forward_kinematics(last_angles))
                         else:
-                            if(LS_X > 0.1 or LS_X < -0.1):
+                            if(LS_X > 0.1 or LS_X < -0.3):
                                 target_position[0] += step * LS_X 
-                            if(LS_Y > 0.1 or LS_Y < -0.1):
+                            if(LS_Y > 0.1 or LS_Y < -0.3):
                                 target_position[1] += (step * LS_Y)
-                            if(RS_Y > 0.1 or RS_Y < -0.1):
+                            if(RS_Y > 0.1 or RS_Y < -0.3):
                                 target_position[2] += (step * RS_Y)
                         
                         
