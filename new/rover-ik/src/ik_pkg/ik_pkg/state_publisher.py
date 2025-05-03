@@ -43,7 +43,7 @@ continuous: float = 0.
 ccw = True
 
 #IK Related
-urdf_file_name = 'arm12.urdf'
+urdf_file_name = 'arm13.urdf'
 ik_tolerance = 1e-3 #Tolerance determines if IK was successful (in meters)
 
 #Angles Ax_0, Ax_1, Ax_2, Ax_3, Wrist, Continuous
