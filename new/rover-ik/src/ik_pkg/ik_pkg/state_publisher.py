@@ -43,11 +43,11 @@ continuous: float = 0.
 ccw = True
 
 #IK Related
-urdf_file_name = 'arm13.urdf'
+urdf_file_name = 'arm12.urdf'
 ik_tolerance = 1e-3 #Tolerance determines if IK was successful (in meters)
 
 #Angles Ax_0, Ax_1, Ax_2, Ax_3, Wrist, Continuous
-start_angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+start_angles = [0.0, 0.0, 0.0, 0.0, -1.57, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 last_angles = start_angles
 ik_angles = start_angles
 
@@ -112,7 +112,7 @@ class StatePublisher(Node):
         #pass in all the global variables
         global started#, axis0, axis1, axis2, axis3, wrist
         global target_position, target_orientation, last_angles
-        global ik_angles
+        global ik_angles, start_angles
 
         axis0 = 0.0
         axis1 = 0.0
@@ -129,6 +129,7 @@ class StatePublisher(Node):
             get_package_share_directory('ik_pkg'),
             urdf_file_name)
         joint_mask = [False, True, True, False, True, False, True, False, True, True, False]
+        #start_angles = [0.0, 0.0, 0.0, 0.0, -1.57, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         arm_chain = Chain.from_urdf_file(urdf, active_links_mask=joint_mask) # Load the robotic chain from URDF
         
         #print([link.name for link in arm_chain.links])
@@ -185,22 +186,34 @@ class StatePublisher(Node):
     
                 if not started:
                     started = True
+                    # Set the initial position of the robot
                     update_orientation(arm_chain.forward_kinematics(start_angles))
+                    # axis0 = start_angles[1]
+                    # axis1 = start_angles[2]
+                    # axis2 = start_angles[4]
+                    # axis3 = start_angles[6]
+                    # continuous = start_angles[8]
+                    # wrist = start_angles[9]
+                    # self.get_logger().info(f"Starting angles: {start_angles}")
+                    # self.joint_pub.publish(joint_state)
+                    # self.broadcaster.sendTransform(odom_trans)
                     
 
                 if started:
-                    axis0 = 0.0
-                    axis1 = 0.0
-                    axis2 = 0.0
-                    axis3 = 0.0
-                    continuous = 0.0
-                    wrist = 0.0
-                    self.joint_pub.publish(joint_state)
-                    self.broadcaster.sendTransform(odom_trans)
+                    
+                    # axis0 = 0.0
+                    # axis1 = 0.0
+                    # axis2 = 0.0
+                    # axis3 = 0.0
+                    # continuous = 0.0
+                    # wrist = 0.0
+                    # self.joint_pub.publish(joint_state)
+                    # self.broadcaster.sendTransform(odom_trans)
 
-                    # This will adjust as needed per iteration
-                    loop_rate.sleep()
-                    return
+                    # # This will adjust as needed per iteration
+                    # loop_rate.sleep()
+                    # return
+                    
                     if self.enable_controller:
                         pyg.event.pump()  # Process events to detect new controllers
 
@@ -252,11 +265,12 @@ class StatePublisher(Node):
                         self.get_logger().info(f"IK Solution Found. Error: {error}")
                 
 
-                    axis0 = ik_angles[2]
-                    axis1 = ik_angles[3]
+                    axis0 = ik_angles[1]
+                    axis1 = ik_angles[2]
                     axis2 = ik_angles[4]
-                    axis3 = ik_angles[5]
-                    wrist = ik_angles[6]
+                    axis3 = ik_angles[6]
+                    continous = ik_angles[9]
+                    wrist = ik_angles[8]
 
                     #####
                     #IK Animation    
