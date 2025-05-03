@@ -14,7 +14,7 @@ def generate_launch_description():
 
     package_dir = get_package_share_directory('ik_pkg')
 
-    urdf_file_name = 'arm11.urdf'
+    urdf_file_name = 'arm12.urdf'
     urdf = os.path.join(package_dir, urdf_file_name)
     with open(urdf, 'r') as infp:
         robot_desc = infp.read()

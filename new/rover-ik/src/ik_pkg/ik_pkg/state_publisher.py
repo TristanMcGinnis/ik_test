@@ -43,11 +43,11 @@ continuous: float = 0.
 ccw = True
 
 #IK Related
-urdf_file_name = 'arm11.urdf'
+urdf_file_name = 'arm12.urdf'
 ik_tolerance = 1e-3 #Tolerance determines if IK was successful (in meters)
 
-#Angles X, X, Ax_0, Ax_1, Ax_2, Ax_3, Wrist, X
-start_angles = [0.0, 0.0, 0.0, 0.0, 90*degree, 0.0, 0.0, 0.0]
+#Angles Ax_0, Ax_1, Ax_2, Ax_3, Wrist, Continuous
+start_angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 last_angles = start_angles
 ik_angles = start_angles
 
@@ -103,7 +103,7 @@ class StatePublisher(Node):
         # message declarations
         odom_trans = TransformStamped()
         odom_trans.header.frame_id = 'odom'
-        odom_trans.child_frame_id = 'base_link'
+        odom_trans.child_frame_id = 'base_footprint'
         joint_state = JointState()
 
 
@@ -119,6 +119,7 @@ class StatePublisher(Node):
         axis2 = 0.0
         axis3 = 0.0
         wrist = 0.0
+        continuous = 0.0
 
 
         ######
@@ -127,7 +128,14 @@ class StatePublisher(Node):
         urdf = os.path.join(
             get_package_share_directory('ik_pkg'),
             urdf_file_name)
-        arm_chain = Chain.from_urdf_file(urdf) # Load the robotic chain from URDF
+        joint_mask = [False, True, True, False, True, False, True, False, True, True, False]
+        arm_chain = Chain.from_urdf_file(urdf, active_links_mask=joint_mask) # Load the robotic chain from URDF
+        
+        #print([link.name for link in arm_chain.links])
+        #['Base link', 'Axis_0_Joint', 'Axis_1_Joint', 
+        #'Axis_1_to_Segment_1', 'Axis_2_Joint', 
+        # 'Axis_2_to_Segment_2', 'Axis_3_Joint', 
+        # 'Axis_3_to_Segment_3', 'Wrist_Joint', 'Continuous_Joint', 'Axis_4_C_to_Effector']
 
 
         ######
@@ -162,8 +170,8 @@ class StatePublisher(Node):
                 # update joint_states in the message
                 now = self.get_clock().now()
                 joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['arm_joint_1', 'arm_joint_2', 'arm_joint_3', 'arm_joint_4', 'arm_joint_5']
-                joint_state.position = [axis0, axis1, axis2, axis3, wrist]
+                joint_state.name = ['Axis_0_Joint', 'Axis_1_Joint', 'Axis_2_Joint', 'Axis_3_Joint', 'Continuous_Joint', 'Wrist_Joint']
+                joint_state.position = [axis0, axis1, axis2, axis3, continuous, wrist]
 
                 # update transform (position of the robot in the world)
                 odom_trans.header.stamp = now.to_msg()
@@ -181,6 +189,18 @@ class StatePublisher(Node):
                     
 
                 if started:
+                    axis0 = 0.0
+                    axis1 = 0.0
+                    axis2 = 0.0
+                    axis3 = 0.0
+                    continuous = 0.0
+                    wrist = 0.0
+                    self.joint_pub.publish(joint_state)
+                    self.broadcaster.sendTransform(odom_trans)
+
+                    # This will adjust as needed per iteration
+                    loop_rate.sleep()
+                    return
                     if self.enable_controller:
                         pyg.event.pump()  # Process events to detect new controllers
 
