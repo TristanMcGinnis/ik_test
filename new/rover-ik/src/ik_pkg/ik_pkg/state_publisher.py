@@ -46,8 +46,11 @@ ccw = True
 urdf_file_name = 'arm12.urdf'
 ik_tolerance = 1e-3 #Tolerance determines if IK was successful (in meters)
 
-#Angles Ax_0, Ax_1, Ax_2, Ax_3, Wrist, Continuous
-start_angles = [0.0, 0.0, 0.0, 0.0, -1.57, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#Angles __, Ax_0, Ax_1, __, Ax_2, __, Ax_3, __, Wrist, Continuous, __
+#joint_mask = [False, True, True, False, True, False, True, False, True, True, False]
+start_angles = [0.0, 0.0, -0.397, 0.0, 1.919, 0.0, 0.623, 0.0, 0.0, 0.0, 0.0]
+#start_angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
 last_angles = start_angles
 ik_angles = start_angles
 
@@ -99,6 +102,7 @@ class StatePublisher(Node):
         self.broadcaster = TransformBroadcaster(self, qos=qos_profile)
         self.nodeName = self.get_name()
         self.get_logger().info("{0} started".format(self.nodeName))
+        
 
         # message declarations
         odom_trans = TransformStamped()
@@ -131,7 +135,7 @@ class StatePublisher(Node):
         joint_mask = [False, True, True, False, True, False, True, False, True, True, False]
         #start_angles = [0.0, 0.0, 0.0, 0.0, -1.57, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         arm_chain = Chain.from_urdf_file(urdf, active_links_mask=joint_mask) # Load the robotic chain from URDF
-        
+        target_position = arm_chain.forward_kinematics(start_angles)[:3, 3] # Get the target position from the forward kinematics
         #print([link.name for link in arm_chain.links])
         #['Base link', 'Axis_0_Joint', 'Axis_1_Joint', 
         #'Axis_1_to_Segment_1', 'Axis_2_Joint', 
@@ -217,9 +221,9 @@ class StatePublisher(Node):
                     if self.enable_controller:
                         pyg.event.pump()  # Process events to detect new controllers
 
-                        LS_X = round(controller.get_axis(0),2)*.5#left x-axis
+                        LS_X = -1 * round(controller.get_axis(0),2)*.5#left x-axis
                         LS_Y = round(controller.get_axis(1),2)*.5#left y-axis
-                        RS_X = round(controller.get_axis(2),2)*.5#right x-axis
+                        RS_X = -1 * round(controller.get_axis(2),2)*.5#right x-axis
                         RS_Y = round(controller.get_axis(3),2)*.5#right y-axis 
                         RB = controller.get_button(10) #Right Bumper
 
